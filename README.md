@@ -1,4 +1,6 @@
-# eTrace
+[![release](https://img.shields.io/badge/release-1.0-succes.svg)](https://pypi.org/project/wallme/)
+
+# wallme
 
 ## Description
 
