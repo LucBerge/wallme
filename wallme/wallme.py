@@ -32,7 +32,7 @@ def list():
 		print(name + " - " + WEBSITES[name].DESCRIPTION)
 
 def help():
-	print("Usage:\n\twallme <WEBSITE>'\n\nOptions:\n -l --list To list supported websites.")
+	print("Usage:\n\twallme <WEBSITE>\n\nOptions:\n -l --list To list supported websites.")
 
 if __name__ == "__main__":
 	try:
