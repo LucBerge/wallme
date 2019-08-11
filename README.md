@@ -56,17 +56,26 @@ def getWebPageUrl():
 
 def getPictureUrl(webpage):
 	pictureurl = re.search("""<IMG SRC="(.*?)"[^>]*?>""",webpage)
+
+	if(pictureurl == None):
+		raise Exception("No image found today. It could be a video.")
+
 	return 'https://apod.nasa.gov/apod/' + pictureurl.group(1)
 ```
 
 4. Import your file in websites.py
 
-5. Check if it works by calling 
+5. Develop the package
 ```
-wallme <NAME>
+python3 setup.py develop --user
 ```
 
-6. Pull request
+6. Check if it works by calling 
+```
+wallme <WEBSITE>
+```
+
+7. Pull request
 
 ## Contact
 
