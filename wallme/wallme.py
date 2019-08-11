@@ -1,6 +1,6 @@
 import sys
-from websites import WEBSITES
-from manager import *
+from wallme.websites import WEBSITES
+from wallme.manager import *
 
 ########
 # MAIN #
@@ -18,21 +18,24 @@ def main(name):
 # GLOBAL #
 ##########
 
+def parse():
+	if(len(sys.argv) == 2):
+		if(sys.argv[1] == "-l" or sys.argv[1] == "--list"):
+			list()
+		else:
+			main(sys.argv[1])
+	else:
+		help()
+
 def list():
 	for name in WEBSITES.keys():
 		print(name + " - " + WEBSITES[name].DESCRIPTION)
 
 def help():
-	print("Usage:\n'" + sys.argv[0] + " <WEBSITE>'\n\nOptions:\n -l --list To list supported websites.")
+	print("Usage:\n\twallme <WEBSITE>'\n\nOptions:\n -l --list To list supported websites.")
 
 if __name__ == "__main__":
 	try:
-		if(len(sys.argv) == 2):
-			if(sys.argv[1] == "-l" or sys.argv[1] == "--list"):
-				list()
-			else:
-				main(sys.argv[1])
-		else:
-			help()
+		parse(sys.argv)
 	except KeyboardInterrupt:
 		None

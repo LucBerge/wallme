@@ -17,6 +17,6 @@ setuptools.setup(
 	packages=setuptools.find_packages(),
 	install_requires=['requests'],
 	entry_points = {
-        'console_scripts': ['wallme=wallme.wallme:main'],
+        'console_scripts': ['wallme=wallme.wallme:parse'],
     }
 )

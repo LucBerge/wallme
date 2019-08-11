@@ -1,2 +1,2 @@
-import websites.apod
-import websites.bing
+import wallme.websites.apod
+import wallme.websites.bing

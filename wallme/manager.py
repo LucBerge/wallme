@@ -1,7 +1,7 @@
 import requests, platform, os, ctypes
 from datetime import date
 from pathlib import Path
-from websites import WEBSITES
+from wallme.websites import WEBSITES
 
 class Manager():
 
