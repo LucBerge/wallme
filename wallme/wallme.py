@@ -36,6 +36,6 @@ def help():
 
 if __name__ == "__main__":
 	try:
-		parse(sys.argv)
+		parse()
 	except KeyboardInterrupt:
 		None
