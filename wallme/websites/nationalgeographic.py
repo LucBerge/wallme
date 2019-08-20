@@ -1,4 +1,4 @@
-import re, json
+import json
 
 NAME = 'national-geographic'
 DESCRIPTION = 'One photo of the world every day'

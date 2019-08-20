@@ -1,4 +1,4 @@
-import re, json
+import json
 
 NAME = 'bing'
 DESCRIPTION = 'Bing daily wallpaper images gallery for several countries'

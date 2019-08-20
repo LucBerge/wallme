@@ -1,4 +1,4 @@
-import re, json
+import json
 
 NAME = 'nasa'
 DESCRIPTION = 'NASA Image of the day'
