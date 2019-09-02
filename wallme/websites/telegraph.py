@@ -5,7 +5,7 @@ DESCRIPTION = 'The Telegraph picture of the day'
 
 def getWebPageUrl(date):
 	month = date.strftime('%B').lower()
-	return date.strftime("https://www.telegraph.co.uk/news/%Y/%m/%d/pictures-day-%d-" + month + "-%Y/")
+	return date.strftime("https://www.telegraph.co.uk/news/%Y/%m/%d/pictures-day-%-d-" + month + "-%Y/")
 
 def getPictureUrl(webpage):
 	pictureurl = re.search(r'<img class="responsive gallery__regwall-image" src="(.*?)\?',webpage)
