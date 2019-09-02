@@ -16,7 +16,7 @@ class Manager():
 	def wallme(self):
 		#Get website url
 		today = date.today()
-		webpageurl = self.website.getWebPageUrl((today.strftime("%d"), today.strftime("%m"), today.strftime("%Y")))
+		webpageurl = self.website.getWebPageUrl(date.today())
 
 		#Retrieve webpage
 		result = requests.get(webpageurl)
