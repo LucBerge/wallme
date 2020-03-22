@@ -13,26 +13,24 @@ class Manager():
 		
 		self.website = WEBSITES[name]
 
-	def wallme(self):
-		#Get website url
-		today = date.today()
-		webpageurl = self.website.getWebPageUrl(date.today())
-
-		#Retrieve webpage
-		result = requests.get(webpageurl)
-		if result.status_code != 200:
-			raise Exception("Cannot retrieve webpage '" + webpageurl + "'. Please make sure the url is valid.")
-
-		#Get picture url
-		pictureurl = self.website.getPictureUrl(result.text)
+	def wallme(self, test=False):
+		#Get image url
+		pre_process_result = self.website.pre_process()
+        
+		#Get image url
+		image_url = self.website.process(date.today())
 
 		#Download image
-		img_data = requests.get(pictureurl).content
+		img_data = requests.get(image_url).content
 		with open(self.IMAGE, 'wb') as handler:
 			handler.write(img_data)
 
+        #Flip image if necessary
+		post_process_result = self.website.post_process(self.IMAGE)
+
 		#Set wallpaper
-		self.setWallpaper(self.IMAGE)
+		if(not test):
+			self.setWallpaper(self.IMAGE)
 
 #################
 # SET WALLPAPER #
@@ -57,5 +55,5 @@ class Manager():
 			raise Exception("Cannot set wallpaper")
 
 	def setWallpaperWindows(self, image): 
-		if ctypes.windll.user32.SystemParametersInfoW(20, 0, image, 0) != 1:
+		if ctypes.windll.user32.SystemParametersInfoW(20, 0, image, 3) != 1:
 			raise Exception("Cannot set wallpaper")

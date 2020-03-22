@@ -1,6 +1,7 @@
-import sys
+import sys, traceback
 from wallme.websites import WEBSITES
-from wallme.manager import *
+from wallme.manager import Manager
+from wallme.exceptions import ProcessException
 
 ########
 # MAIN #
@@ -11,8 +12,11 @@ def main(name):
 		manager = Manager(name)
 		manager.wallme()
 		print("New wallpaper set.")
-	except Exception as e:
+	except ProcessException as e:
 		print(e)
+	except Exception as e:
+		traceback.print_exc()
+		print("=========\nPlease, report this issue : https://github.com/LucBerge/wallme/issues")
 
 ##########
 # GLOBAL #

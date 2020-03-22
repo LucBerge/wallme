@@ -1,15 +1,19 @@
-import re
+from wallme import utils
+from wallme.exceptions import ProcessException
 
 NAME = 'apod'
 DESCRIPTION = 'Astronomy Picture of the Day'
 
-def getWebPageUrl(date):
-	return 'https://apod.nasa.gov/apod/astropix.html'
-
-def getPictureUrl(webpage):
-	pictureurl = re.search("""<IMG SRC="(.*?)"[^>]*?>""",webpage)
+def pre_process():
+	return None
     
-	if(pictureurl == None):
-		raise Exception("No image found today. It could be a video.")
+def process(date):
+    try:
+        soup = utils.get_soup_from_url('https://apod.nasa.gov/apod/astropix.html')
+        imgs = utils.find_tags_from_soup(soup, "img")
+        return 'https://apod.nasa.gov/apod/' + imgs[0].get('src')
+    except:
+        raise ProcessException('No picture found today. It could be a video.') 
     
-	return 'https://apod.nasa.gov/apod/' + pictureurl.group(1)
+def post_process(image):
+	return None
