@@ -1,24 +1,17 @@
-import re, requests
+from wallme import utils
 
-NAME = 'guardian'
+NAME = 'the-guardian'
 DESCRIPTION = 'Each day the picture editor of the Guardian brings you a selection of photo highlights'
 
-def getWebPageUrl(date):
-	return "https://www.theguardian.com/news/series/ten-best-photographs-of-the-day"
+def pre_process():
+	return None
 
-def getPictureUrl(webpage):
-	
-	pageurl = re.search(r'<a href="(.*?)" class="u-faux-block-link__overlay js-headline-text"',webpage)
-
-	if(pageurl == None):
-		raise Exception("Unable to find the image.")
-
-	webpage = requests.get(pageurl.group(1)).text
-	pictureurl = re.search(r'sizes="1900px" srcset="(.*?)"', webpage)
-
-	if(pictureurl == None):
-		raise Exception("Unable to find the image.")
-
-	space_index = pictureurl.group(1).find(' ')
-
-	return pictureurl.group(1)[:space_index].replace('amp;','')
+def process(date):
+	soup = utils.get_soup_from_url('https://www.theguardian.com/news/series/ten-best-photographs-of-the-day')
+	imgs = utils.find_tags_from_soup(soup, "a", attributes={"class": "u-faux-block-link__overlay"})
+	soup = utils.get_soup_from_url(imgs[0].get('href'))
+	sources = utils.find_tags_from_soup(soup, "source", attributes={"sizes": "1900px"})
+	return sources[0].get('srcset').split(' ')[0]
+    
+def post_process(image):
+	return None

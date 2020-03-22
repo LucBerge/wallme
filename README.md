@@ -1,4 +1,4 @@
-[![release](https://img.shields.io/badge/release-1.1-succes.svg)](https://pypi.org/project/wallme/)
+[![release](https://img.shields.io/badge/release-1.2-succes.svg)](https://pypi.org/project/wallme/)
 
 # wallme
 
@@ -46,36 +46,31 @@ wallme <WEBSITE>
 3. Create a new file from template
 
 ```python
-import re
+from wallme import utils
 
 NAME = 'apod'
 DESCRIPTION = 'Astronomy Picture of the Day'
 
-def getWebPageUrl():
-	return 'https://apod.nasa.gov/apod/astropix.html'
-
-def getPictureUrl(webpage):
-	pictureurl = re.search("""<IMG SRC="(.*?)"[^>]*?>""",webpage)
-
-	if(pictureurl == None):
-		raise Exception("No image found today. It could be a video.")
-
-	return 'https://apod.nasa.gov/apod/' + pictureurl.group(1)
+def pre_process():
+	return None
+    
+def process(date):
+	soup = utils.get_soup_from_url('https://apod.nasa.gov/apod/astropix.html')
+	imgs = utils.find_tags_from_soup(soup, "img")
+	return 'https://apod.nasa.gov/apod/' + imgs[0].get('src')
+    
+def post_process(image):
+	return None
 ```
 
 4. Import your file in websites.py
 
-5. Develop the package
+5. Check if it works by calling 
 ```
-python3 setup.py develop --user
-```
-
-6. Check if it works by calling 
-```
-wallme <WEBSITE>
+python main.py <WEBSITE>
 ```
 
-7. Pull request
+7. Commit and pull request
 
 ## Contact
 

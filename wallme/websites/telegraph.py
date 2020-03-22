@@ -1,16 +1,17 @@
-import re
+from wallme import utils
 
 NAME = 'telegraph'
 DESCRIPTION = 'The Telegraph picture of the day'
 
-def getWebPageUrl(date):
-	month = date.strftime('%B').lower()
-	return date.strftime("https://www.telegraph.co.uk/news/%Y/%m/%d/pictures-day-%-d-" + month + "-%Y/")
+def pre_process():
+	return None
+    
+def process(date):
+	soup = utils.get_soup_from_url('https://www.telegraph.co.uk/news/pictures/')
+	h3s = utils.find_tags_from_soup(soup, "h3", attributes={"class": "u-heading-6"})
+	soup = utils.get_soup_from_url("https://www.telegraph.co.uk" + h3s[0].a.get('href'))
+	imgs = utils.find_tags_from_soup(soup, "img", attributes={"class": "gallery__regwall-image"})
+	return "https://www.telegraph.co.uk" + imgs[0].get('src').split('?')[0]
 
-def getPictureUrl(webpage):
-	pictureurl = re.search(r'<img class="responsive gallery__regwall-image" src="(.*?)\?',webpage)
-	
-	if(pictureurl == None):
-		raise Exception("Unable to find the image.")
-
-	return 'https://www.telegraph.co.uk' + pictureurl.group(1)
+def post_process(image):
+	return None
