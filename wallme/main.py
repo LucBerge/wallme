@@ -7,11 +7,11 @@ from wallme.exceptions import WallmeException
 def main():
 
 	parser = argparse.ArgumentParser(description='Change your desktop wallpaper based on websites.')
-	parser.add_argument('-set', type=str, help='Change the wallpaper.')
-	parser.add_argument('-set-startup', type=str, help='Change your wallpaper on each startup.')
-	parser.add_argument('-unset-startup', action='store_true', help='Stop changing under your wallpaper on each startup.')
-	parser.add_argument('-info', type=str, help='Open the webpage on which the image is taken from.')
-	parser.add_argument('-list', action='store_true', help='List all the available ')
+	parser.add_argument('-list', action='store_true', help='list all the available websites')
+	parser.add_argument('-info', type=str, help='open the webpage on which the image is taken from')
+	parser.add_argument('-set', type=str, help='change the wallpaper')
+	parser.add_argument('-set-startup', type=str, help='change your wallpaper on startup')
+	parser.add_argument('-unset-startup', action='store_true', help='stop changing your wallpaper on startup')
 	args = parser.parse_args()
     
 	try:
