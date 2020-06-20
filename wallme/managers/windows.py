@@ -21,7 +21,7 @@ class Windows(Manager):
         
 		if(not os.path.exists(self.STARTUP_FILE)):
 			with open(self.STARTUP_FILE, "wt") as f:
-				f.write("wallme " + website.NAME)
+				f.write("wallme -set " + website.NAME)
 
 	def unset_startup(self):
 		if(os.path.exists(self.STARTUP_FILE)):
