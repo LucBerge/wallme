@@ -1,45 +1,49 @@
-import sys, traceback
+import traceback, argparse
 from wallme.websites import WEBSITES
-from wallme.manager import Manager
-from wallme.exceptions import ProcessException
+from wallme.websites.websitefactory import WebsiteFactory
+from wallme.managers.managerfactory import ManagerFactory
+from wallme.exceptions import WallmeException
 
-########
-# MAIN #
-########
+def main():
 
-def main(name):
-	try :
-		manager = Manager(name)
-		manager.wallme()
-		print("New wallpaper set.")
-	except ProcessException as e:
+	parser = argparse.ArgumentParser(description='Change your desktop wallpaper based on websites.')
+	parser.add_argument('-set', type=str, help='Change the wallpaper.')
+	parser.add_argument('-set-startup', type=str, help='Change your wallpaper on each startup.')
+	parser.add_argument('-unset-startup', action='store_true', help='Stop changing under your wallpaper on each startup.')
+	parser.add_argument('-info', type=str, help='Open the webpage on which the image is taken from.')
+	parser.add_argument('-list', action='store_true', help='List all the available ')
+	args = parser.parse_args()
+    
+	try:
+		if(args.list):
+			for name in WEBSITES.keys():
+				print(name + " - " + WEBSITES[name].DESCRIPTION)
+		else:
+			manager_factory = ManagerFactory()
+			manager = manager_factory.get_manager()
+        
+			if(args.unset_startup):
+				manager.unset_startup()
+			else:
+				website_factory = WebsiteFactory()
+				if(args.set):
+					website = website_factory.get_website(args.set)
+					manager.set(website)
+				if(args.set_startup):
+					website = website_factory.get_website(args.set_startup)
+					manager.set_startup(website)
+				if(args.info):
+					website = website_factory.get_website(args.info)
+					manager.info(website)
+    
+	except WallmeException as e:
 		print(e)
 	except Exception as e:
 		traceback.print_exc()
 		print("=========\nPlease, report this issue : https://github.com/LucBerge/wallme/issues")
 
-##########
-# GLOBAL #
-##########
-
-def parse():
-	if(len(sys.argv) == 2):
-		if(sys.argv[1] == "-l" or sys.argv[1] == "--list"):
-			list()
-		else:
-			main(sys.argv[1])
-	else:
-		help()
-
-def list():
-	for name in WEBSITES.keys():
-		print(name + " - " + WEBSITES[name].DESCRIPTION)
-
-def help():
-	print("Usage:\n\twallme <WEBSITE>\n\nOptions:\n -l --list To list supported websites.")
-
 if __name__ == "__main__":
 	try:
-		parse()
+		main()
 	except KeyboardInterrupt:
 		None

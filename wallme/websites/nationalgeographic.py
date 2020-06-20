@@ -2,6 +2,7 @@ from wallme import utils
 
 NAME = 'national-geographic'
 DESCRIPTION = 'One photo of the world every day'
+URL = 'https://www.nationalgeographic.com/photography/photo-of-the-day'
 
 def pre_process():
 	return None
