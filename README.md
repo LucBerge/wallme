@@ -1,4 +1,4 @@
-[![release](https://img.shields.io/badge/release-1.2-succes.svg)](https://pypi.org/project/wallme/)
+[![release](https://img.shields.io/badge/release-1.3-succes.svg)](https://pypi.org/project/wallme/)
 
 # wallme
 
