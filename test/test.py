@@ -1,5 +1,5 @@
 from wallme.websites import WEBSITES
-from wallme.manager import Manager
+from wallme.managers.managerfactory import ManagerFactory
 from wallme.log import logger
 import traceback
 
@@ -10,13 +10,15 @@ def test():
     logger.debug('Test in progress...')
     logger.debug('0/' + str(len(WEBSITES)) + '\tSucces: 0\tFails: 0')
     
-    for name in WEBSITES.keys():
+    manager_factory = ManagerFactory()
+    manager = manager_factory.get_manager()
+    
+    for website in WEBSITES.values():
         try :
-            manager = Manager(name)
-            manager.wallme(test=True)
+            manager.set(website, test=True)
             succes+=1
         except Exception as e:
-            fails[name] = str(traceback.format_exc())
+            fails[website.NAME] = str(traceback.format_exc())
         
         counter+=1
         logger.debug(str(counter) + '/' + str(len(WEBSITES)) + '\tSucces: ' + str(succes) + '\tFails: ' + str(len(fails)), CR=True, flush=True)

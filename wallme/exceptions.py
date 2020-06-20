@@ -1,3 +1,3 @@
 ﻿
-class ProcessException(Exception):
+class WallmeException(Exception):
 	pass

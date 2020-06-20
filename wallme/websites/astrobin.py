@@ -3,12 +3,13 @@ from PIL import Image
 
 NAME = 'astrobin'
 DESCRIPTION = 'Pictures of Galaxies, Stars and Planets'
+URL = 'https://www.astrobin.com/iotd/archive/'
 
 def pre_process():
     return None
 
 def process(date):
-	soup = utils.get_soup_from_url('https://www.astrobin.com/iotd/archive/')
+	soup = utils.get_soup_from_url(URL)
 	divs = utils.find_tags_from_soup(soup, "div", attributes={"class": "astrobin-image-container"})
 	soup = utils.get_soup_from_url("https://www.astrobin.com/full" + divs[0].a.get('href') + "/0")
 	imgs = utils.find_tags_from_soup(soup, "img", attributes={"class": "astrobin-image"})

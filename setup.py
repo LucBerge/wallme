@@ -7,7 +7,7 @@ long_description = open("README.md", "r").read()
 import setuptools
 setuptools.setup(
 	name='wallme',
-	version='1.2',
+	version='1.3.1',
 	author='LucBerge',
 	author_email='lucas.bergeron@outlook.fr',
 	description="Change your wallpaper every day",
@@ -17,6 +17,6 @@ setuptools.setup(
 	packages=setuptools.find_packages(),
 	install_requires=['requests', 'bs4', 'Pillow'],
 	entry_points = {
-        'console_scripts': ['wallme=wallme.main:parse'],
+        'console_scripts': ['wallme=wallme.main:main'],
     }
 )

@@ -2,6 +2,7 @@ from wallme import utils
 
 NAME = 'bing'
 DESCRIPTION = 'Bing daily wallpaper images gallery for several countries'
+URL = 'http://www.bing.com'
 
 def pre_process():
 	return None
