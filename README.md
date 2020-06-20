@@ -33,8 +33,25 @@ pip uninstall wallme
 
 ## Usage
 
+List all the available websites :
 ```
-wallme <WEBSITE>
+wallme -list
+```
+Open the webpage on which the image is taken from :
+```
+wallme -info <website>
+```
+Change the wallpaper :
+```
+wallme -set <website>
+```
+Change your wallpaper on startup :
+```
+wallme -set-startup <website>
+```
+Stop changing your wallpaper on startup :
+```
+wallme -unset-startup
 ```
 
 ## Contribute by adding a new website
@@ -50,12 +67,13 @@ from wallme import utils
 
 NAME = 'apod'
 DESCRIPTION = 'Astronomy Picture of the Day'
+URL = 'https://apod.nasa.gov/apod/astropix.html'
 
 def pre_process():
 	return None
     
 def process(date):
-	soup = utils.get_soup_from_url('https://apod.nasa.gov/apod/astropix.html')
+	soup = utils.get_soup_from_url(URL)
 	imgs = utils.find_tags_from_soup(soup, "img")
 	return 'https://apod.nasa.gov/apod/' + imgs[0].get('src')
     
