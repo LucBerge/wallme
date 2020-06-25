@@ -1,11 +1,10 @@
-import ctypes, os
+import ctypes, os, winreg
 from wallme.managers.manager import Manager
 from wallme.exceptions import WallmeException
 
 class Windows(Manager):
 
-	STARTUP_FOLDER = os.path.expandvars(r'%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup')
-	STARTUP_FILE = STARTUP_FOLDER + "\\wallme.bat"
+	REGISTRY_KEY = "wallme"
 
 	def set(self, website, test=False):
 		super().download(website)
@@ -14,15 +13,11 @@ class Windows(Manager):
 				raise WallmeException("Cannot set wallpaper")
 
 	def set_startup(self, website):
-		if(not os.path.exists(self.STARTUP_FOLDER)):
-			os.makedirs(STARTUP_FOLDER)
-		
-		self.unset_startup()
-        
-		if(not os.path.exists(self.STARTUP_FILE)):
-			with open(self.STARTUP_FILE, "wt") as f:
-				f.write("wallme -set " + website.NAME)
-
+		reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
+		with reg_key:
+			winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min wallme.exe -set " + website.NAME)
+            
 	def unset_startup(self):
-		if(os.path.exists(self.STARTUP_FILE)):
-			os.remove(self.STARTUP_FILE)
+		reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
+		with reg_key:
+			winreg.DeleteValue(reg_key, self.REGISTRY_KEY)
