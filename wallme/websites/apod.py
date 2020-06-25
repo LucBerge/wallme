@@ -2,7 +2,7 @@ from wallme import utils
 from wallme.exceptions import WallmeException
 
 NAME = 'apod'
-DESCRIPTION = 'Astronomy Picture of the Day'
+DESCRIPTION = 'Astronomy Picture Of the Day'
 URL = 'https://apod.nasa.gov/apod/astropix.html'
 
 def pre_process():

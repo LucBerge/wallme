@@ -1,7 +1,7 @@
 from wallme import utils
 
 NAME = 'wikipedia'
-DESCRIPTION = 'English wikipedia picture of the day'
+DESCRIPTION = 'English wikipedia picture of the day, mostly about history'
 URL = 'https://en.wikipedia.org/wiki/Wikipedia:Picture_of_the_day'
 
 def pre_process():

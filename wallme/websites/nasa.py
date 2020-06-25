@@ -1,7 +1,7 @@
 from wallme import utils
 
 NAME = 'nasa'
-DESCRIPTION = 'NASA Image of the day'
+DESCRIPTION = 'Pictures related to nasa\'s missions'
 URL = 'https://www.nasa.gov/multimedia/imagegallery/iotd.html'
 
 def pre_process():

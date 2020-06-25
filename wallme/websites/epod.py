@@ -1,7 +1,7 @@
 from wallme import utils
 
 NAME = 'epod'
-DESCRIPTION = 'Earth Picture of the Day'
+DESCRIPTION = 'Earth Picture Of the Day'
 URL = 'https://epod.usra.edu/'
 
 def pre_process():

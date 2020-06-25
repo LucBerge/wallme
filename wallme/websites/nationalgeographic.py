@@ -1,7 +1,7 @@
 from wallme import utils
 
 NAME = 'national-geographic'
-DESCRIPTION = 'One photo of the world every day'
+DESCRIPTION = 'The magazin National-Geographic magazine gives you pictures about live on earth'
 URL = 'https://www.nationalgeographic.com/photography/photo-of-the-day'
 
 def pre_process():

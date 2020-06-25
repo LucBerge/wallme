@@ -1,7 +1,7 @@
 from wallme import utils
 
 NAME = 'the-telegraph'
-DESCRIPTION = 'The Telegraph picture of the day'
+DESCRIPTION = 'Pictures reflecting the political, social or environmental situations in the world'
 URL = 'https://www.telegraph.co.uk/news/pictures/'
 
 def pre_process():

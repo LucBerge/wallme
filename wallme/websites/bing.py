@@ -1,7 +1,7 @@
 from wallme import utils
 
 NAME = 'bing'
-DESCRIPTION = 'Bing daily wallpaper images gallery for several countries'
+DESCRIPTION = 'Various landscapes taken from the web search engine Bing'
 URL = 'http://www.bing.com'
 
 def pre_process():
