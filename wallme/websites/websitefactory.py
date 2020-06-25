@@ -5,6 +5,6 @@ class WebsiteFactory():
 
 	def get_website(self, name):
 		if(name not in WEBSITES.keys()):
-			raise WallmeException("Website '" + name + "' not supported. Use the -list option to list all posibilities.")
+			raise WallmeException("Website '" + name + "' not supported. Use the -list option to list all the posibilities.")
 		
 		return WEBSITES[name]
