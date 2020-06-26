@@ -1,6 +1,7 @@
 from wallme import utils
 
-NAME = 'nasa'
+KEY = 'nasa'
+TEST_KEY = KEY
 DESCRIPTION = 'Pictures related to nasa\'s missions'
 URL = 'https://www.nasa.gov/multimedia/imagegallery/iotd.html'
 

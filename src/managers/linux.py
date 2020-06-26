@@ -28,7 +28,7 @@ After=network-online.target\n\
 Type=simple\n\
 User=" + user + "\n\
 Group=" + user + "\n\
-ExecStart=/usr/local/bin/wallme -set " + website.NAME + "\n\
+ExecStart=/usr/local/bin/wallme -set " + website.NAME + '.' + website.subkey + "\n\
 \n\
 [Install]\n\
 WantedBy=multi-user.target")

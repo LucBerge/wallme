@@ -1,7 +1,8 @@
 from wallme import utils
 from PIL import Image
 
-NAME = 'astrobin'
+KEY = 'astrobin'
+TEST_KEY = KEY
 DESCRIPTION = 'Pictures of Galaxies, Stars and Planets'
 URL = 'https://www.astrobin.com/iotd/archive/'
 

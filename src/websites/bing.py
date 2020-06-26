@@ -1,6 +1,7 @@
 from wallme import utils
 
-NAME = 'bing'
+KEY = 'bing'
+TEST_KEY = KEY
 DESCRIPTION = 'Various landscapes taken from the web search engine Bing'
 URL = 'http://www.bing.com'
 

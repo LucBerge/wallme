@@ -1,6 +1,7 @@
 from wallme import utils
 
-NAME = 'wikipedia'
+KEY = 'wikipedia'
+TEST_KEY = KEY
 DESCRIPTION = 'English wikipedia picture of the day, mostly about history'
 URL = 'https://en.wikipedia.org/wiki/Wikipedia:Picture_of_the_day'
 

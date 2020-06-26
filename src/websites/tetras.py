@@ -1,4 +1,5 @@
-NAME = 'tetras'
+KEY = 'tetras'
+TEST_KEY = KEY
 DESCRIPTION = 'Amateur pictures of the Alpes and the Dauphiné'
 URL = 'http://tetras.org/Semaine.jpg'
 

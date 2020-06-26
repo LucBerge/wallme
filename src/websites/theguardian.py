@@ -1,6 +1,7 @@
 from wallme import utils
 
-NAME = 'the-guardian'
+KEY = 'the-guardian'
+TEST_KEY = KEY
 DESCRIPTION = 'Each day the picture editor of the Guardian brings you a selection of photo highlights'
 URL = 'https://www.theguardian.com/news/series/ten-best-photographs-of-the-day'
 

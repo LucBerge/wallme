@@ -1,7 +1,8 @@
 from wallme import utils
 from wallme.exceptions import WallmeException
 
-NAME = 'apod'
+KEY = 'apod'
+TEST_KEY = KEY
 DESCRIPTION = 'Astronomy Picture Of the Day'
 URL = 'https://apod.nasa.gov/apod/astropix.html'
 

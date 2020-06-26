@@ -1,6 +1,7 @@
 from wallme import utils
 
-NAME = 'national-geographic'
+KEY = 'national-geographic'
+TEST_KEY = KEY
 DESCRIPTION = 'The magazin National-Geographic magazine gives you pictures about live on earth'
 URL = 'https://www.nationalgeographic.com/photography/photo-of-the-day'
 

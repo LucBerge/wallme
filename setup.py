@@ -17,6 +17,6 @@ setuptools.setup(
 	packages=setuptools.find_packages(),
 	install_requires=['requests', 'bs4', 'Pillow'],
 	entry_points = {
-        'console_scripts': ['wallme=wallme.main:main'],
+        'console_scripts': ['wallme=wallme.src:main'],
     }
 )

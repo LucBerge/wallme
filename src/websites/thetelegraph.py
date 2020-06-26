@@ -1,6 +1,7 @@
 from wallme import utils
 
-NAME = 'the-telegraph'
+KEY = 'the-telegraph'
+TEST_KEY = KEY
 DESCRIPTION = 'Pictures reflecting the political, social or environmental situations in the world'
 URL = 'https://www.telegraph.co.uk/news/pictures/'
 

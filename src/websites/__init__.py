@@ -6,6 +6,7 @@ import wallme.websites.bing
 import wallme.websites.epod
 import wallme.websites.nasa
 import wallme.websites.nationalgeographic
+import wallme.websites.reddit
 import wallme.websites.tetras
 import wallme.websites.theguardian
 import wallme.websites.thetelegraph
@@ -17,4 +18,4 @@ for item in list(globals().items()):
 	if(isinstance(item, tuple)):
 		if(isinstance(item[1], types.ModuleType)):
 			if("websites." in item[1].__name__):
-				WEBSITES[item[1].NAME] = item[1]
+				WEBSITES[item[1].KEY] = item[1]
