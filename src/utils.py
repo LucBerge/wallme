@@ -2,9 +2,11 @@ import requests, json
 from bs4 import BeautifulSoup
 from .exceptions import WallmeException
 
+headers = {'User-agent': 'wallme'}
+
 def get_webpage_from_url(url):
     try:
-        webpage = requests.get(url)
+        webpage = requests.get(url, headers=headers)
     except requests.exceptions.ConnectionError as e:
         raise WallmeException("Cannot retrieve webpage '" + url + "'. Make sure you have an internet connection, retry later.")
     
