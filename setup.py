@@ -15,8 +15,8 @@ setuptools.setup(
 	long_description_content_type="text/markdown",
 	url='https://github.com/LucBerge/wallme',
 	packages=setuptools.find_packages(),
-	install_requires=['requests', 'bs4', 'Pillow'],
+	install_requires=['requests', 'bs4', 'Pillow', 'pathlib'],
 	entry_points = {
-        'console_scripts': ['wallme=wallme.src:main'],
+        'console_scripts': ['wallme=src.main:main'],
     }
 )
