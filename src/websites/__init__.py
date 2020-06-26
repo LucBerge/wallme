@@ -1,16 +1,16 @@
 import types
 
-import wallme.websites.apod
-import wallme.websites.astrobin
-import wallme.websites.bing
-import wallme.websites.epod
-import wallme.websites.nasa
-import wallme.websites.nationalgeographic
-import wallme.websites.reddit
-import wallme.websites.tetras
-import wallme.websites.theguardian
-import wallme.websites.thetelegraph
-import wallme.websites.wikipedia
+from . import apod
+from . import astrobin
+from . import bing
+from . import epod
+from . import nasa
+from . import nationalgeographic
+from . import reddit
+from . import tetras
+from . import theguardian
+from . import thetelegraph
+from . import wikipedia
 
 WEBSITES = {}
 

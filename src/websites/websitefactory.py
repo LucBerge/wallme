@@ -1,5 +1,5 @@
-from wallme.websites import WEBSITES
-from wallme.exceptions import WallmeException
+from . import WEBSITES
+from ..exceptions import WallmeException
 
 class WebsiteFactory():
 

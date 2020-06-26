@@ -1,4 +1,4 @@
-from wallme import utils
+from .. import utils
 
 KEY = 'the-guardian'
 TEST_KEY = KEY

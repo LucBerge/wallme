@@ -1,6 +1,6 @@
 KEY = 'tetras'
 TEST_KEY = KEY
-DESCRIPTION = 'Amateur pictures of the Alpes and the Dauphiné'
+DESCRIPTION = 'Amateur pictures of the Alpes and the Dauphine'
 URL = 'http://tetras.org/Semaine.jpg'
 
 def pre_process():

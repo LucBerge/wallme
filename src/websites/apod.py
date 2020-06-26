@@ -1,5 +1,5 @@
-from wallme import utils
-from wallme.exceptions import WallmeException
+from .. import utils
+from ..exceptions import WallmeException
 
 KEY = 'apod'
 TEST_KEY = KEY

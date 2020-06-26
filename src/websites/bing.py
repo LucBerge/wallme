@@ -1,4 +1,4 @@
-from wallme import utils
+from .. import utils
 
 KEY = 'bing'
 TEST_KEY = KEY

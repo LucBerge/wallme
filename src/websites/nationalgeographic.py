@@ -1,4 +1,4 @@
-from wallme import utils
+from .. import utils
 
 KEY = 'national-geographic'
 TEST_KEY = KEY

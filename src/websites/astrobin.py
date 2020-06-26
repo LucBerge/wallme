@@ -1,4 +1,4 @@
-from wallme import utils
+from .. import utils
 from PIL import Image
 
 KEY = 'astrobin'

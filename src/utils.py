@@ -1,6 +1,6 @@
 import requests, json
 from bs4 import BeautifulSoup
-from wallme.exceptions import WallmeException
+from .exceptions import WallmeException
 
 def get_webpage_from_url(url):
     try:

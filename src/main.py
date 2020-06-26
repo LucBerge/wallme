@@ -1,8 +1,8 @@
 import traceback, argparse
-from wallme.websites import WEBSITES
-from wallme.websites.websitefactory import WebsiteFactory
-from wallme.managers.managerfactory import ManagerFactory
-from wallme.exceptions import WallmeException
+from .websites import WEBSITES
+from .websites.websitefactory import WebsiteFactory
+from .managers.managerfactory import ManagerFactory
+from .exceptions import WallmeException
 
 def main():
 
@@ -16,8 +16,8 @@ def main():
     
 	try:
 		if(args.list):
-			for name in WEBSITES.keys():
-				print(name + " - " + WEBSITES[name].DESCRIPTION)
+			for key in WEBSITES.keys():
+				print(key + " - " + WEBSITES[key].DESCRIPTION)
 		else:
 			manager_factory = ManagerFactory()
 			manager = manager_factory.get_manager()

@@ -1,6 +1,10 @@
-import ctypes, os, winreg
-from wallme.managers.manager import Manager
-from wallme.exceptions import WallmeException
+import ctypes, os
+try:
+    import winreg
+except:
+    pass
+from .manager import Manager
+from ..exceptions import WallmeException
 
 class Windows(Manager):
 
@@ -15,7 +19,7 @@ class Windows(Manager):
     def set_startup(self, website):
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
-            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min wallme.exe -set " + website.NAME + '.' + website.subkey)
+            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min wallme.exe -set " + website.KEY + '.' + website.subkey)
             
     def unset_startup(self):
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)

@@ -1,4 +1,5 @@
-from wallme import utils
+from .. import utils
+from ..exceptions import WallmeException
 
 KEY = 'reddit'
 TEST_KEY = 'reddit.earthporn'
@@ -7,7 +8,10 @@ URL = 'http://www.reddit.com/r/'
 
 def pre_process():
     global URL
-    URL = URL + subkey
+    try:
+    	URL = URL + subkey
+    except:
+    	raise WallmeException("Missing subkey : Please use 'reddit.<subkey>'.")
     return None
     
 def process(date):
