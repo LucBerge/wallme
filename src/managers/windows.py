@@ -17,9 +17,14 @@ class Windows(Manager):
                 raise WallmeException("Cannot set wallpaper")
 
     def set_startup(self, website):
+        try:
+            fullkey = website.KEY + '.' + website.subkey
+        except:
+            fullkey = website.KEY
+            
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
-            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min wallme.exe -set " + website.KEY + '.' + website.subkey)
+            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min wallme.exe -set " + fullkey)
             
     def unset_startup(self):
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
