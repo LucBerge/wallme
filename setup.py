@@ -1,13 +1,13 @@
 import sys
 if sys.version_info < (3, 5):
-    sys.exit('Y2T requires Python 3.5+')
+    sys.exit('wallme requires Python 3.5+')
 
 long_description = open("README.md", "r").read()
 
 import setuptools
 setuptools.setup(
 	name='wallme',
-	version='1.3.1',
+	version='1.4',
 	author='LucBerge',
 	author_email='lucas.bergeron@outlook.fr',
 	description="Change your wallpaper every day",
