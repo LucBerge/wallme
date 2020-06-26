@@ -1,7 +1,7 @@
-from wallme.websites import WEBSITES
-from wallme.managers.managerfactory import ManagerFactory
-from wallme.websites.websitefactory import WebsiteFactory
-from wallme.log import logger
+from src.websites import WEBSITES
+from src.managers.managerfactory import ManagerFactory
+from src.websites.websitefactory import WebsiteFactory
+from src.log import logger
 import traceback
 
 def test():
