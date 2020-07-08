@@ -10,7 +10,7 @@ install:
     - pip install requests bs4 Pillow pathlib
 
 script:
-    - travis_wait pytest -cov=test/
+    - travis_wait pytest --cov=test/
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
