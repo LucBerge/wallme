@@ -8,7 +8,7 @@ python:
     
 install:
     - pip install --ignore-installed pytest
-    - pip install requests bs4 Pillow pathlib pytest-cov codecov
+    - pip install requests[security] bs4 Pillow pathlib pytest-cov codecov
 
 script:
     - travis_wait pytest --cov=test/
