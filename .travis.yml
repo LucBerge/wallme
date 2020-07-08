@@ -7,7 +7,6 @@ python:
     - 3.8
     
 install:
-    - pip install -r requirements.txt
     - pip install requests bs4 Pillow pathlib
 
 script:
