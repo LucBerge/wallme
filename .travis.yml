@@ -1,10 +1,17 @@
 language: python
+
 python:
     - 3.5
     - 3.6
     - 3.7
     - 3.8
+    
 install:
-  - pip install requests bs4 Pillow pathlib
+    - pip install -r requirements.txt
+    - pip install requests bs4 Pillow pathlib
+
 script:
-    - travis_wait pytest
+    - travis_wait pytest -cov=test/
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
