@@ -1,4 +1,6 @@
-[![release](https://img.shields.io/badge/release-1.4.1-succes.svg)](https://pypi.org/project/wallme/)[![Build Status](https://travis-ci.org/LucBerge/wallme.svg?branch=master)](https://travis-ci.org/LucBerge/wallme)
+[![release](https://img.shields.io/badge/release-1.4.1-succes.svg)](https://pypi.org/project/wallme/)
+[![Build Status](https://travis-ci.org/LucBerge/wallme.svg?branch=master)](https://travis-ci.org/LucBerge/wallme)
+[![codecov](https://codecov.io/gh/LucBerge/wallme/branch/master/graph/badge.svg)](https://codecov.io/gh/LucBerge/wallme)
 
 # wallme
 
