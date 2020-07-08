@@ -7,4 +7,4 @@ python:
 install:
   - pip install requests bs4 Pillow pathlib
 script:
-    - pytest
+    - travis_wait pytest
