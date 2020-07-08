@@ -4,11 +4,11 @@ from src.websites.websitefactory import WebsiteFactory
 from src.log import logger
 import traceback
 
-def test():
+def test_all():
     counter = 0
     succes = 0
     fails = {}
-    logger.debug('Test in progress...')
+    logger.debug('Tests in progress...')
     logger.debug('0/' + str(len(WEBSITES)) + '\tSucces: 0\tFails: 0')
     
     manager_factory = ManagerFactory()
@@ -32,9 +32,11 @@ def test():
         for fail in fails.keys():
             logger.debug('=============')
             logger.debug(fail + " : " + fails[fail])
+    
+    assert len(fails) == 0
 
 if __name__ == "__main__":
 	try:
-		test()
+		test_all()
 	except KeyboardInterrupt:
 		None
