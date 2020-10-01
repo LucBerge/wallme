@@ -13,19 +13,19 @@ Pip installation :
 python3 get-pip.py
 ```
 
-## Install
+## To Install
 
 From [PyPi](https://pypi.org/project/wallme/) :
 ```
 pip install wallme
 ```
 
-## Update
+## To Update
 ```
 pip install wallme -U
 ```
 
-## Uninstall
+## To Uninstall
 
 ```
 pip uninstall wallme
