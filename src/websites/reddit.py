@@ -15,8 +15,13 @@ def pre_process():
     return None
     
 def process(date):
-    json = utils.get_json_from_url('http://www.reddit.com/r/' + subkey + '/top/.json?limit=1')
-    return json['data']['children'][0]['data']['url']
+    json = utils.get_json_from_url('http://www.reddit.com/r/' + subkey + '/top/.json?limit=100')
+    
+    for children in json['data']['children']:
+        if("i.redd.it" in children['data']['url']):
+            return children['data']['url']
+    
+    raise WallmeException("No image found today...")
     
 def post_process(image):
     return None
