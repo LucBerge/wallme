@@ -23,9 +23,16 @@ class Manager():
         #Post process
         post_process_result = website.post_process(self.IMAGE)
 
-    def info(self, website):
+    def info(self, website):        
+        #Open the browser
+        webbrowser.open(website.URL, new=2)
+
+    def url(self, website):
         #Pre process
         pre_process_result = website.pre_process()
         
-        #Open the browser
-        webbrowser.open(website.URL, new=2)
+        #Get image url
+        image_url = website.process(date.today())
+        
+        #Print image url
+        print(image_url)
