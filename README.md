@@ -43,6 +43,10 @@ Open the webpage on which the image is taken from :
 ```
 wallme -info <website>
 ```
+Retrieve the image url from the website :
+```
+wallme -url <website>
+```
 Change the wallpaper :
 ```
 wallme -set <website>
