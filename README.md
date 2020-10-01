@@ -90,6 +90,6 @@ python main.py <WEBSITE>
 
 7. Commit and pull request
 
-## Contact
+## Contact Info
 
 Please contact [@LucBerge](https://github.com/LucBerge) for more informations.
