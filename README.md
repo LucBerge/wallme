@@ -1,4 +1,6 @@
 [![release](https://img.shields.io/badge/release-1.4.1-succes.svg)](https://pypi.org/project/wallme/)
+![CodeQL](https://github.com/LucBerge/wallme/workflows/CodeQL/badge.svg?branch=master)
+![Python test](https://github.com/LucBerge/wallme/workflows/Python%20package/badge.svg?branch=master)
 
 # wallme
 
