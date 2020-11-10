@@ -1,7 +1,10 @@
+# coding: utf8
+
 import platform
 from ..exceptions import WallmeException
 from .linux import Linux
 from .windows import Windows
+
 
 class ManagerFactory():
 

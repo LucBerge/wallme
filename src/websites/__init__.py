@@ -1,4 +1,4 @@
-import types
+# coding: utf8
 
 from . import apod
 from . import astrobin
@@ -13,9 +13,14 @@ from . import thetelegraph
 from . import wikipedia
 
 WEBSITES = {}
-
-for item in list(globals().items()):
-	if(isinstance(item, tuple)):
-		if(isinstance(item[1], types.ModuleType)):
-			if("websites." in item[1].__name__):
-				WEBSITES[item[1].KEY] = item[1]
+WEBSITES[apod.KEY] = apod
+WEBSITES[apod.KEY] = astrobin
+WEBSITES[apod.KEY] = bing
+WEBSITES[apod.KEY] = epod
+WEBSITES[apod.KEY] = nasa
+WEBSITES[apod.KEY] = nationalgeographic
+WEBSITES[apod.KEY] = reddit
+WEBSITES[apod.KEY] = tetras
+WEBSITES[apod.KEY] = theguardian
+WEBSITES[apod.KEY] = thetelegraph
+WEBSITES[apod.KEY] = wikipedia

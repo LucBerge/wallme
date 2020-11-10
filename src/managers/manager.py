@@ -1,38 +1,37 @@
+# coding: utf8
+
 import requests
 from datetime import date
 from pathlib import Path
 import webbrowser
 
+
 class Manager():
 
     IMAGE = str(Path.home()) + '/wallme.jpg'
 
-    def download(self, website):
-    
-        #Pre process
-        pre_process_result = website.pre_process()
-        
-        #Get image url
-        image_url = website.process(date.today())
-
-        #Download image
+    def download(self, website, subkey):
+        # Pre process
+        website.pre_process(subkey)
+        # Get image url
+        image_url = website.process(date.today(), subkey)
+        # Download image
         img_data = requests.get(image_url).content
         with open(self.IMAGE, 'wb') as handler:
             handler.write(img_data)
+        # Post process
+        website.post_process(self.IMAGE)
 
-        #Post process
-        post_process_result = website.post_process(self.IMAGE)
-
-    def info(self, website):        
-        #Open the browser
+    def info(self, website, subkey):
+        # Pre process
+        website.pre_process(date.today(), subkey)
+        # Open the browser
         webbrowser.open(website.URL, new=2)
 
-    def url(self, website):
-        #Pre process
-        pre_process_result = website.pre_process()
-        
-        #Get image url
-        image_url = website.process(date.today())
-        
-        #Print image url
+    def url(self, website, subkey):
+        # Pre process
+        website.pre_process(date.today(), subkey)
+        # Get image url
+        image_url = website.process(date.today(), subkey)
+        # Print image url
         print(image_url)
