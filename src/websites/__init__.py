@@ -14,13 +14,13 @@ from . import wikipedia
 
 WEBSITES = {}
 WEBSITES[apod.KEY] = apod
-WEBSITES[apod.KEY] = astrobin
-WEBSITES[apod.KEY] = bing
-WEBSITES[apod.KEY] = epod
-WEBSITES[apod.KEY] = nasa
-WEBSITES[apod.KEY] = nationalgeographic
-WEBSITES[apod.KEY] = reddit
-WEBSITES[apod.KEY] = tetras
-WEBSITES[apod.KEY] = theguardian
-WEBSITES[apod.KEY] = thetelegraph
-WEBSITES[apod.KEY] = wikipedia
+WEBSITES[astrobin.KEY] = astrobin
+WEBSITES[bing.KEY] = bing
+WEBSITES[epod.KEY] = epod
+WEBSITES[nasa.KEY] = nasa
+WEBSITES[nationalgeographic.KEY] = nationalgeographic
+WEBSITES[reddit.KEY] = reddit
+WEBSITES[tetras.KEY] = tetras
+WEBSITES[theguardian.KEY] = theguardian
+WEBSITES[thetelegraph.KEY] = thetelegraph
+WEBSITES[wikipedia.KEY] = wikipedia

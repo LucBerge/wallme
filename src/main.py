@@ -3,7 +3,7 @@
 import traceback
 import argparse
 import sys
-import utils
+from . import utils
 from .websites import WEBSITES
 from .websites.websitefactory import WebsiteFactory
 from .managers.managerfactory import ManagerFactory
