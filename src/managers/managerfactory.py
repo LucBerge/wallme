@@ -4,9 +4,9 @@ import platform
 from ..exceptions import WallmeException
 
 system = platform.system()
-if(system == "Lindfgux"):
+if(system == "Linux"):
     from .linux import Linux as M
-elif system == "Windogfdgws":
+elif system == "Windows":
     from .windows import Windows as M
 
 
