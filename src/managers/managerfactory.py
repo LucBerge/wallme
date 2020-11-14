@@ -8,6 +8,8 @@ if(system == "Linux"):
     from .linux import Linux as M
 elif system == "Windows":
     from .windows import Windows as M
+elif system == "Darwin":
+    from .macos import MacOS as M
 
 
 class ManagerFactory():
