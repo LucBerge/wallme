@@ -41,10 +41,10 @@ jobs:
         pytest --cov=test/
 
   codeql:
- 
     name: CodeQL
+
     runs-on: ubuntu-latest
-  
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
