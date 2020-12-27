@@ -10,7 +10,8 @@ on:
     branches: [ dev, master ]
 
 jobs:
-  Test:
+  test:
+    name: Test
 
     runs-on: ubuntu-latest
     strategy:
@@ -39,7 +40,10 @@ jobs:
       run: |
         pytest --cov=test/
 
-  CodeQL:
+  codeql:
+ 
+    name: CodeQL
+    runs-on: ubuntu-latest
   
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
