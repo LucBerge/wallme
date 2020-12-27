@@ -10,7 +10,7 @@ on:
     branches: [ dev, master ]
 
 jobs:
-  build:
+  Test:
 
     runs-on: ubuntu-latest
     strategy:
@@ -38,3 +38,13 @@ jobs:
     - name: Test with pytest and codecoverage
       run: |
         pytest --cov=test/
+
+  CodeQL:
+  
+    - name: Initialize CodeQL
+    uses: github/codeql-action/init@v1
+    with:
+      languages: python
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
