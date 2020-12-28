@@ -7,12 +7,13 @@ class bcolors:
     END = '\033[0m'
     CR = '\033[F'
 
+
 class Log(object):
     def __init__(self, name):
         self.name = name
 
     def debug(self, msg, CR=False, flush=False):
-        if(CR==True):
+        if(CR is True):
             print(bcolors.CR + "[" + self.name + "] " + msg, flush=flush)
         else:
             print("[" + self.name + "] " + msg, flush=flush)
@@ -22,5 +23,6 @@ class Log(object):
 
     def error(self, msg, flush=False):
         print("[" + self.name + "] " + bcolors.FAIL + "ERROR : " + bcolors.END + msg, flush=flush)
+
 
 logger = Log("wallme")
