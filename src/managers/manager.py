@@ -4,11 +4,12 @@ import requests
 from datetime import date
 from pathlib import Path
 import webbrowser
+import os
 
 
 class Manager():
 
-    IMAGE = str(Path.home()) + '/wallme.jpg'
+    IMAGE = os.path.dirname(os.path.dirname(__file__)) + '\wallme.jpg'
 
     def download(self, website, subkey):
         # Pre process
