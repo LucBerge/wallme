@@ -25,13 +25,13 @@ class Manager():
 
     def info(self, website, subkey):
         # Pre process
-        website.pre_process(date.today(), subkey)
+        website.pre_process(subkey)
         # Open the browser
         webbrowser.open(website.URL, new=2)
 
     def url(self, website, subkey):
         # Pre process
-        website.pre_process(date.today(), subkey)
+        website.pre_process(subkey)
         # Get image url
         image_url = website.process(date.today(), subkey)
         # Print image url
