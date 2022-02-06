@@ -20,6 +20,6 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=['requests', 'bs4', 'Pillow', 'pathlib'],
     entry_points={
-        'console_scripts': ['wallme=src.main:main'],
+        'console_scripts': ['wallme=wallme.main:main'],
     }
 )

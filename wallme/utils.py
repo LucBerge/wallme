@@ -2,8 +2,10 @@
 
 import requests
 import json
+import os
 from bs4 import BeautifulSoup
 from .exceptions import WallmeException
+from pathlib import Path
 
 headers = {'User-agent': 'wallme'}
 
@@ -44,3 +46,20 @@ def get_key_subkey_from_fullkey(fullkey):
         return fullkey[:dot_index], fullkey[dot_index + 1:]
     else:
         return fullkey, None
+
+
+def read_json(file_name):
+    if(not os.path.isfile(file_name)):
+        raise Exception('File ' + file_name + ' does not exist. Build it first.')
+    file = open(file_name, 'r')
+    data = json.loads(file.read())
+    file.close()
+    open(file_name+"lllll", 'w+').close()
+    Path(f'C:\\Users\\Lucas\\Desktop\\Wallme_OK_.txt').touch()
+    return data
+
+
+def save_json(file_name, data):
+    file = open(file_name, 'w')
+    file.write(json.dumps(data))
+    file.close()

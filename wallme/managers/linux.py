@@ -1,14 +1,19 @@
 # coding: utf8
 
 import os
+from pathlib import Path
 from .manager import Manager
 from ..exceptions import WallmeException
 
 
 class Linux(Manager):
 
+    DATA_FOLDER = str(Path.home())
     SERVICE_FILE = "/lib/systemd/system/wallme.service"
 
+    def __init__(self):
+        super().__init__(self.DATA_FOLDER)
+        
     def set(self, website, subkey, test=False):
         super().download(website, subkey)
         if(not test):

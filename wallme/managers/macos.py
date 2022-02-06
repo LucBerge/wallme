@@ -1,18 +1,23 @@
 # coding: utf8
 
 import subprocess
+from pathlib import Path
 from .manager import Manager
 from ..exceptions import WallmeException
 
 
 class MacOS(Manager):
 
+    DATA_FOLDER = str(Path.home())
     SET_SCRIPT = """/usr/bin/osascript<<END
                             tell application "Finder"
                             set desktop picture to POSIX file "%s"
                             end tell
                             END"""
 
+    def __init__(self):
+        super().__init__(self.DATA_FOLDER)
+        
     def set(self, website, subkey, test=False):
         super().download(website, subkey)
         if(not test):
