@@ -10,7 +10,7 @@ long_description = open("README.md", "r").read()
 
 setuptools.setup(
     name='wallme',
-    version='1.4.1',
+    version='1.5.0',
     author='LucBerge',
     author_email='lucas.bergeron@outlook.fr',
     description="Change your wallpaper every day",
