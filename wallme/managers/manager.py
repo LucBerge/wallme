@@ -4,15 +4,14 @@ import requests
 import webbrowser
 import os
 from datetime import date
-from pathlib import Path
 
 
 class Manager():
-    
+
     def __init__(self, data_folder):
         if(not os.path.isdir(data_folder)):
             os.makedirs(data_folder, 493)
-        self.image =  data_folder + '\wallme.jpg'
+        self.image = data_folder + '\\wallme.jpg'
 
     def download(self, website, subkey, test=False):
         # Pre process
@@ -22,7 +21,7 @@ class Manager():
         print("Downloading image from " + image_url)
         # Download image
         img_data = requests.get(image_url).content
-        #Stop here if it is a test
+        # Stop here if it is a test
         if (test):
             return
         with open(self.image, 'wb') as handler:

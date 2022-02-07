@@ -6,6 +6,7 @@ from .manager import Manager
 from ..exceptions import WallmeException
 import os
 
+
 class Windows(Manager):
 
     REGISTRY_KEY = "wallme"

@@ -17,7 +17,7 @@ class MacOS(Manager):
 
     def __init__(self):
         super().__init__(self.DATA_FOLDER)
-        
+
     def set(self, website, subkey, test=False):
         super().download(website, subkey, test)
         if(not test):
@@ -26,15 +26,17 @@ class MacOS(Manager):
             #     raise WallmeException("Cannot set wallpaper")
             # https://stackoverflow.com/questions/431205/how-can-i-programmatically-change-the-background-in-mac-os-x
             # https://stackoverflow.com/questions/29338066/run-python-script-at-os-x-startup
+        raise WallmeException("Not implemented, help us on github : https://github.com/LucBerge/wallme")
 
     def set_startup(self, website, subkey):
         self.unset_startup()
-        if subkey:
-            fullkey = website.KEY + '.' + subkey
-        else:
-            fullkey = website.KEY
+        # if subkey:
+        #    fullkey = website.KEY + '.' + subkey
+        # else:
+        #    fullkey = website.KEY
         # TO DO
+        raise WallmeException("Not implemented, help us on github : https://github.com/LucBerge/wallme")
 
     def unset_startup(self):
         # TO DO
-        pass
+        raise WallmeException("Not implemented, help us on github : https://github.com/LucBerge/wallme")

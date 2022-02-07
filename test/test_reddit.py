@@ -3,8 +3,8 @@
 from .test_website import TestWebsite
 from wallme.websites import reddit
 
-class TestReddit(TestWebsite):
 
+class TestReddit(TestWebsite):
     def test_reddit(self):
         try:
             self.simple_test("reddit", "reddit", None, reddit)

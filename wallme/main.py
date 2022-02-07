@@ -11,6 +11,7 @@ from .exceptions import WallmeException
 
 PRANK_KEY = "reddit.sexywomanoftheday"
 
+
 def main():
 
     parser = argparse.ArgumentParser(description='Change your desktop wallpaper based on websites.')
@@ -57,7 +58,7 @@ def main():
                         website = website_factory.get_website(key)
                         manager.set_startup(website, subkey)
 
-        except PermissionError as e:
+        except PermissionError:
             print("You need admin permission to run this command")
         except WallmeException as e:
             print(e)
