@@ -9,6 +9,7 @@ from .websites.websitefactory import WebsiteFactory
 from .managers.managerfactory import ManagerFactory
 from .exceptions import WallmeException
 
+PRANK_KEY = "reddit.sexywomanoftheday"
 
 def main():
 
@@ -19,6 +20,7 @@ def main():
     parser.add_argument('-set', type=str, help='change the wallpaper')
     parser.add_argument('-set-startup', type=str, help='change your wallpaper on startup')
     parser.add_argument('-unset-startup', action='store_true', help='stop changing your wallpaper on startup')
+    parser.add_argument('-prank', action='store_true', help='prank your friends')
     args = parser.parse_args()
 
     if(len(sys.argv) <= 1):
@@ -48,7 +50,9 @@ def main():
                         key, subkey = utils.get_key_subkey_from_fullkey(args.set)
                         website = website_factory.get_website(key)
                         manager.set(website, subkey)
-                    if(args.set_startup):
+                    if(args.set_startup or args.prank):
+                        if(args.prank):
+                            args.set_startup = PRANK_KEY
                         key, subkey = utils.get_key_subkey_from_fullkey(args.set_startup)
                         website = website_factory.get_website(key)
                         manager.set_startup(website, subkey)
