@@ -43,9 +43,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Lint with flake8
-        uses: py-actions/flake8@v2
-        with:
-          max-line-length: "1000"
+      uses: py-actions/flake8@v2
+      with:
+        max-line-length: "1000"
 
   code_quality:
     name: Code quality
