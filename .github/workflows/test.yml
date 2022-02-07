@@ -1,9 +1,9 @@
-name: CI
+name: Test
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [ master ]
+  push:
+    branches: [ dev ]
 
 jobs:
   test:
@@ -38,16 +38,3 @@ jobs:
       with:
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }
-
-  static_analysis:
-    name: Static analysis
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Lint with flake8
-      uses: py-actions/flake8@v2
-      with:
-        max-line-length: "1000"
