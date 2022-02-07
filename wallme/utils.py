@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from .exceptions import WallmeException
 from pathlib import Path
 
-headers = {'User-agent': 'wallme'}
+headers = {'User-Agent': 'Wallme-Bot/1.0'}
 
 
 def get_webpage_from_url(url):
