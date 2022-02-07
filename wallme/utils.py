@@ -54,8 +54,6 @@ def read_json(file_name):
     file = open(file_name, 'r')
     data = json.loads(file.read())
     file.close()
-    open(file_name+"lllll", 'w+').close()
-    Path(f'C:\\Users\\Lucas\\Desktop\\Wallme_OK_.txt').touch()
     return data
 
 
