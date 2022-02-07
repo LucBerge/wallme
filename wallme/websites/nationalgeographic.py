@@ -4,20 +4,17 @@ from .. import utils
 
 KEY = 'national-geographic'
 TEST_KEY = KEY
-DESCRIPTION = 'The magazin National-Geographic magazine gives you pictures about live on earth'
-URL = 'https://www.nationalgeographic.com/photography/photo-of-the-day'
+DESCRIPTION = 'The National-Geographic magazine gives you pictures about live on earth'
+URL = 'https://www.nationalgeographic.com/photo-of-the-day/'
 
 
 def pre_process(subkey):
     return None
 
-
 def process(date, subkey):
-    json = utils.get_json_from_url('https://www.nationalgeographic.com/photography/photo-of-the-day/_jcr_content/.syndication-gallery.json')
-    renditions = json['items'][0]['image']['renditions']
-    sorted_renditions = sorted(renditions, key=lambda i: int(i['width']), reverse=True)
-    return sorted_renditions[0]['uri']
-
+    soup = utils.get_soup_from_url(URL)
+    images = utils.find_tags_from_soup(soup, "meta", attributes={"property": "og:image"})
+    return images[0].get('content')
 
 def post_process(image):
     return None

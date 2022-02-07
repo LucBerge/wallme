@@ -19,10 +19,12 @@ class Manager():
         website.pre_process(subkey)
         # Get image url
         image_url = website.process(date.today(), subkey)
+        print("Downloading image from " + image_url)
         # Download image
         img_data = requests.get(image_url).content
         with open(self.image, 'wb') as handler:
             handler.write(img_data)
+        print("Image saved to " + self.image)
         # Post process
         website.post_process(self.image)
 

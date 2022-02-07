@@ -5,7 +5,7 @@ from ..exceptions import WallmeException
 
 KEY = 'reddit'
 TEST_KEY = 'reddit.earthporn'
-DESCRIPTION = 'Top pictures from the topic of your choice. Use reddit.<topic> as the key. (e.g. : reddit.earthporn)'
+DESCRIPTION = 'Top pictures from the topic of your choice. Use \"reddit.<subreddit>\" as the key. (e.g. : reddit.earthporn)'
 URL = 'http://www.reddit.com/r/'
 
 
