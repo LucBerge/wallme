@@ -14,7 +14,7 @@ class Manager():
             os.makedirs(data_folder, 493)
         self.image =  data_folder + '\wallme.jpg'
 
-    def download(self, website, subkey):
+    def download(self, website, subkey, test=False):
         # Pre process
         website.pre_process(subkey)
         # Get image url
@@ -22,6 +22,9 @@ class Manager():
         print("Downloading image from " + image_url)
         # Download image
         img_data = requests.get(image_url).content
+        #Stop here if it is a test
+        if (test):
+            return
         with open(self.image, 'wb') as handler:
             handler.write(img_data)
         print("Image saved to " + self.image)

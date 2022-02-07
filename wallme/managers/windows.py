@@ -15,7 +15,7 @@ class Windows(Manager):
         super().__init__(self.DATA_FOLDER)
 
     def set(self, website, subkey, test=False):
-        super().download(website, subkey)
+        super().download(website, subkey, test)
         if(not test):
             if ctypes.windll.user32.SystemParametersInfoW(20, 0, self.image, 3) != 1:
                 raise WallmeException("Cannot set wallpaper")
