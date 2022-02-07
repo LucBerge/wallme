@@ -2,4 +2,5 @@
 *.pyc
 *.jpg
 *.spec
+*.xml
 build

@@ -1,8 +1,12 @@
-name: CI
+name: Test
 
 on:
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
+  push:
+    paths:
+      - 'wallme/'
+      - 'test/'
+    branches: [ dev ]
 
 jobs:
   test:
@@ -11,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
@@ -30,17 +34,10 @@ jobs:
 
     - name: Test with pytest and codecoverage
       run: |
-        pytest --cov=test/
+        pytest test --cov=wallme/ --cov-report=xml
 
-  static_analysis:
-    name: Static analysis
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Lint with flake8
-      uses: py-actions/flake8@v2
+    - name: "Upload coverage to Codecov"
+      uses: codecov/codecov-action@v2
       with:
-        max-line-length: "1000"
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}
