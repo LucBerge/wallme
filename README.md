@@ -1,6 +1,6 @@
 [![release](https://img.shields.io/badge/release-1.4.1-succes.svg)](https://pypi.org/project/wallme/)
-![CodeQL](https://github.com/LucBerge/wallme/workflows/CodeQL/badge.svg?branch=master)
-![Python test](https://github.com/LucBerge/wallme/workflows/Python%20package/badge.svg?branch=master)
+[![Test](https://img.shields.io/github/workflow/status/LucBerge/wallme/CI/dev?branch=dev&label=Test)](https://github.com/LucBerge/wallme/actions/workflows/ci.yml)
+[![Deploy](https://img.shields.io/github/workflow/status/LucBerge/wallme/CD/master?branch=master&label=Deploy)](https://github.com/LucBerge/wallme/actions/workflows/cd.yml)
 [![codecov](https://codecov.io/gh/LucBerge/wallme/branch/master/graph/badge.svg)](https://codecov.io/gh/LucBerge/wallme)
 
 # wallme

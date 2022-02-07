@@ -1,36 +1,44 @@
 # coding: utf8
 
 import requests
-from datetime import date
-from pathlib import Path
 import webbrowser
+import os
+from datetime import date
 
 
 class Manager():
 
-    IMAGE = str(Path.home()) + '/wallme.jpg'
+    def __init__(self, data_folder):
+        if(not os.path.isdir(data_folder)):
+            os.makedirs(data_folder, 493)
+        self.image = data_folder + '\\wallme.jpg'
 
-    def download(self, website, subkey):
+    def download(self, website, subkey, test=False):
         # Pre process
         website.pre_process(subkey)
         # Get image url
         image_url = website.process(date.today(), subkey)
+        print("Downloading image from " + image_url)
         # Download image
         img_data = requests.get(image_url).content
-        with open(self.IMAGE, 'wb') as handler:
+        # Stop here if it is a test
+        if (test):
+            return
+        with open(self.image, 'wb') as handler:
             handler.write(img_data)
+        print("Image saved to " + self.image)
         # Post process
-        website.post_process(self.IMAGE)
+        website.post_process(self.image)
 
     def info(self, website, subkey):
         # Pre process
-        website.pre_process(date.today(), subkey)
+        website.pre_process(subkey)
         # Open the browser
         webbrowser.open(website.URL, new=2)
 
     def url(self, website, subkey):
         # Pre process
-        website.pre_process(date.today(), subkey)
+        website.pre_process(subkey)
         # Get image url
         image_url = website.process(date.today(), subkey)
         # Print image url
