@@ -5,11 +5,11 @@ from . import astrobin
 from . import bing
 from . import epod
 from . import nasa
-from . import nationalgeographic
+from . import national_geographic
 from . import reddit
 from . import tetras
-from . import theguardian
-from . import thetelegraph
+from . import the_guardian
+from . import the_telegraph
 from . import wikipedia
 from . import outdoor_photographer
 
@@ -19,10 +19,10 @@ WEBSITES[astrobin.KEY] = astrobin
 WEBSITES[bing.KEY] = bing
 WEBSITES[epod.KEY] = epod
 WEBSITES[nasa.KEY] = nasa
-WEBSITES[nationalgeographic.KEY] = nationalgeographic
+WEBSITES[national_geographic.KEY] = national_geographic
 WEBSITES[outdoor_photographer.KEY] = outdoor_photographer
 WEBSITES[reddit.KEY] = reddit
 WEBSITES[tetras.KEY] = tetras
-WEBSITES[theguardian.KEY] = theguardian
-WEBSITES[thetelegraph.KEY] = thetelegraph
+WEBSITES[the_guardian.KEY] = the_guardian
+WEBSITES[the_telegraph.KEY] = the_telegraph
 WEBSITES[wikipedia.KEY] = wikipedia
