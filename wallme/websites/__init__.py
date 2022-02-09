@@ -11,6 +11,7 @@ from . import tetras
 from . import theguardian
 from . import thetelegraph
 from . import wikipedia
+from . import outdoor_photographer
 
 WEBSITES = {}
 WEBSITES[apod.KEY] = apod
@@ -19,6 +20,7 @@ WEBSITES[bing.KEY] = bing
 WEBSITES[epod.KEY] = epod
 WEBSITES[nasa.KEY] = nasa
 WEBSITES[nationalgeographic.KEY] = nationalgeographic
+WEBSITES[outdoor_photographer.KEY] = outdoor_photographer
 WEBSITES[reddit.KEY] = reddit
 WEBSITES[tetras.KEY] = tetras
 WEBSITES[theguardian.KEY] = theguardian
