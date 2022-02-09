@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'wallme/'
-      - 'test/'
+      - 'wallme/*'
+      - 'test/*'
     branches: [ dev ]
 
 jobs:
