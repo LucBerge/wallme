@@ -3,7 +3,6 @@
 from .. import utils
 
 KEY = 'wikipedia'
-TEST_KEY = KEY
 DESCRIPTION = 'English wikipedia picture of the day, mostly about history'
 BASE_URL = "https://en.wikipedia.org"
 URL = BASE_URL + "/wiki/Wikipedia:Picture_of_the_day"

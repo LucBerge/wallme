@@ -4,7 +4,6 @@ from .. import utils
 from ..exceptions import WallmeException
 
 KEY = 'apod'
-TEST_KEY = KEY
 DESCRIPTION = 'Astronomy Picture Of the Day'
 URL = 'https://apod.nasa.gov/apod/astropix.html'
 

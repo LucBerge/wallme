@@ -3,7 +3,6 @@
 from .. import utils
 
 KEY = 'epod'
-TEST_KEY = KEY
 DESCRIPTION = 'Earth Picture Of the Day'
 URL = 'https://epod.usra.edu/'
 

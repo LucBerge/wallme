@@ -1,7 +1,6 @@
 # coding: utf8
 
 KEY = 'tetras'
-TEST_KEY = KEY
 DESCRIPTION = 'Amateur pictures of the Alpes and the Dauphine'
 URL = 'http://tetras.org/Semaine.jpg'
 
