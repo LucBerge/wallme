@@ -18,8 +18,8 @@ class Manager():
         website.pre_process(subkey)
         # Get image url
         image_url = website.process(datetime.date.today(), subkey)
-        print("Downloading image from " + image_url)
         # Download image
+        print("Downloading image from " + image_url, flush=True)
         img_data = requests.get(image_url).content
         # Stop here if it is a test
         if (test):
