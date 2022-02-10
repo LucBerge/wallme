@@ -3,7 +3,7 @@
 import requests
 import webbrowser
 import os
-from datetime import date
+import datetime
 
 
 class Manager():
@@ -17,9 +17,9 @@ class Manager():
         # Pre process
         website.pre_process(subkey)
         # Get image url
-        image_url = website.process(date.today(), subkey)
-        print("Downloading image from " + image_url)
+        image_url = website.process(datetime.date.today(), subkey)
         # Download image
+        print("Downloading image from " + image_url, flush=True)
         img_data = requests.get(image_url).content
         # Stop here if it is a test
         if (test):
@@ -40,6 +40,6 @@ class Manager():
         # Pre process
         website.pre_process(subkey)
         # Get image url
-        image_url = website.process(date.today(), subkey)
+        image_url = website.process(datetime.date.today(), subkey)
         # Print image url
         print(image_url)

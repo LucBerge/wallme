@@ -3,7 +3,6 @@
 from .. import utils
 
 KEY = 'nasa'
-TEST_KEY = KEY
 DESCRIPTION = 'Pictures related to Nasa\'s missions'
 URL = 'https://www.nasa.gov/multimedia/imagegallery/iotd.html'
 

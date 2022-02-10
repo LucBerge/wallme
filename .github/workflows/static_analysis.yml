@@ -3,7 +3,7 @@ name: Static analysis
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev ]
 
 jobs:
   static_analysis:

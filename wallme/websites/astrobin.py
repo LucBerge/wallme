@@ -4,7 +4,6 @@ from .. import utils
 from PIL import Image
 
 KEY = 'astrobin'
-TEST_KEY = KEY
 DESCRIPTION = 'Pictures of galaxies, stars and planets'
 URL = 'https://www.astrobin.com/iotd/archive/'
 

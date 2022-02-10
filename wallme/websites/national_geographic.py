@@ -3,7 +3,6 @@
 from .. import utils
 
 KEY = 'national-geographic'
-TEST_KEY = KEY
 DESCRIPTION = 'The National-Geographic magazine gives you pictures about live on earth'
 URL = 'https://www.nationalgeographic.com/photo-of-the-day/'
 
