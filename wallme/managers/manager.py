@@ -4,6 +4,7 @@ import requests
 import webbrowser
 import os
 import datetime
+from ..log import logger
 
 
 class Manager():
@@ -19,11 +20,11 @@ class Manager():
         # Get image url
         image_url = website.process(datetime.date.today(), subkey)
         # Download image
-        print("Downloading image from " + image_url, flush=True)
+        logger.debug("Downloading image from " + image_url, flush=True)
         img_data = requests.get(image_url).content
         with open(self.image, 'wb') as handler:
             handler.write(img_data)
-        print("Image saved to " + self.image)
+        logger.debug("Image saved to " + self.image)
         # Post process
         website.post_process(self.image)
 
@@ -39,4 +40,4 @@ class Manager():
         # Get image url
         image_url = website.process(datetime.date.today(), subkey)
         # Print image url
-        print(image_url)
+        logger.debug(image_url)

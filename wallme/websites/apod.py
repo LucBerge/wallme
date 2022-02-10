@@ -3,6 +3,7 @@
 from .. import utils
 from ..exceptions import WallmeException
 import datetime
+from ..log import logger
 
 KEY = 'apod'
 DESCRIPTION = 'Astronomy Picture Of the Day'
@@ -23,7 +24,7 @@ def process(date, subkey):
         img = _process(URL)
     except Exception:
         try:
-            print('Could not find today\'s picture, getting yesterday\'s one')
+            logger.warning('Could not find today\'s picture, getting yesterday\'s one')
             date = date - datetime.timedelta(days=1)
             img = _process('https://apod.nasa.gov/apod/ap' + date.strftime("%y%m%d") + '.html')
         except Exception:

@@ -8,6 +8,7 @@ from .websites import WEBSITES
 from .websites.websitefactory import WebsiteFactory
 from .managers.managerfactory import ManagerFactory
 from .exceptions import WallmeException
+from .log import logger
 
 PRANK_KEY = "reddit.sexywomanoftheday"
 
@@ -30,7 +31,7 @@ def main():
         try:
             if(args.list):
                 for key in WEBSITES.keys():
-                    print(key + " - " + WEBSITES[key].DESCRIPTION)
+                    logger.debug(key + " - " + WEBSITES[key].DESCRIPTION)
             else:
                 manager_factory = ManagerFactory()
                 manager = manager_factory.get_manager()
@@ -59,12 +60,12 @@ def main():
                         manager.set_startup(website, subkey)
 
         except PermissionError:
-            print("You need admin permission to run this command")
+            logger.error("You need admin permission to run this command")
         except WallmeException as e:
-            print(e)
+            logger.error(str(e))
         except Exception:
             traceback.print_exc()
-            print("=========\nPlease, report this issue : https://github.com/LucBerge/wallme/issues")
+            logger.error("Please, report this issue : https://github.com/LucBerge/wallme/issues")
 
 
 if __name__ == "__main__":
