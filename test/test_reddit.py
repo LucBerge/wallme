@@ -23,9 +23,8 @@ class TestReddit(TestWebsite):
             assert True
 
     def test_reddit_no_image(self):
-        reddit.URL = "https://fake.url"
         try:
-            self.simple_test("reddit.cityporn", "reddit", "cityporn", reddit)
+            self.simple_test("reddit.askreddit", "reddit", "askreddit", reddit)
             assert False
         except Exception:
             assert True
