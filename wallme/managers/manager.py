@@ -9,10 +9,12 @@ from ..log import logger
 
 class Manager():
 
+    IMAGE_NAME = "wallme.jpg"
+
     def __init__(self, data_folder):
         if(not os.path.isdir(data_folder)):
             os.makedirs(data_folder, 493)
-        self.image = data_folder + '\\wallme.jpg'
+        self.image = os.path.join(data_folder, self.IMAGE_NAME)
 
     def download(self, website, subkey, test=False):
         # Pre process

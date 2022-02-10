@@ -8,7 +8,7 @@ from ..exceptions import WallmeException
 
 class Linux(Manager):
 
-    DATA_FOLDER = str(Path.home())
+    DATA_FOLDER = str(Path.home()) + "/wallme"
     SERVICE_FILE = "/lib/systemd/system/wallme.service"
 
     def __init__(self):
