@@ -21,9 +21,6 @@ class Manager():
         # Download image
         print("Downloading image from " + image_url, flush=True)
         img_data = requests.get(image_url).content
-        # Stop here if it is a test
-        if (test):
-            return
         with open(self.image, 'wb') as handler:
             handler.write(img_data)
         print("Image saved to " + self.image)

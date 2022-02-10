@@ -35,6 +35,7 @@ jobs:
     - name: Test with pytest and codecoverage
       run: |
         pytest test --cov=wallme/ --cov-report=xml
+      options: --user root
 
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v2
