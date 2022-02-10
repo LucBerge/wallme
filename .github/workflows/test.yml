@@ -15,8 +15,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8, 3.9]
-    container:
-      options: --user root
 
     steps:
     - uses: actions/checkout@v2
@@ -35,7 +33,7 @@ jobs:
 
     - name: Test with pytest and codecoverage
       run: |
-        pytest test --cov=wallme/ --cov-report=xml
+        sudo pytest test --cov=wallme/ --cov-report=xml
 
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v2
