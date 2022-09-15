@@ -14,7 +14,7 @@ def pre_process(subkey):
 def process(date, subkey):
     soup = utils.get_soup_from_url(URL)
     imgs = utils.find_tags_from_soup(soup, "img", attributes={"class": "wp-post-image"})
-    links = imgs[0].get('data-lazy-srcset')
+    links = imgs[0].get('srcset')
     return links.split(', ')[-1].split(' ')[-2]
 
 
