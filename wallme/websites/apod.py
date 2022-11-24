@@ -11,11 +11,9 @@ class Apod(Website):
     description = 'Astronomy Picture Of the Day'
     url = 'https://apod.nasa.gov/apod/astropix.html'
 
-
     def _process(self, url):
         soup = self.get_soup_from_url(url)
         return self.find_tags_from_soup(soup, "img")[0].parent.get('href')
-
 
     def process(self, date, subkey):
         try:

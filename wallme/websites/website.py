@@ -6,15 +6,12 @@ from bs4 import BeautifulSoup
 
 class Website():
     HEADERS = {'User-Agent': 'Wallme-Bot/1.0'}
-        
 
     def pre_process(self, subkey):
         return None
 
-
     def post_process(self, image):
         return None
-
 
     def get_webpage_from_url(self, url):
         try:
@@ -27,14 +24,11 @@ class Website():
             raise Exception("Cannot retrieve webpage '" + url + "' (error " + str(webpage.status_code) + "). Please make sure the url is valid.")
         return webpage.text
 
-
     def get_json_from_url(self, url):
         return json.loads(self.get_webpage_from_url(url))
 
-
     def get_soup_from_url(self, url, parser='html.parser'):
         return BeautifulSoup(self.get_webpage_from_url(url), parser)
-
 
     def find_tags_from_soup(self, soup, tag, attributes=None):
         if(attributes):

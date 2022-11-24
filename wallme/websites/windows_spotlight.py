@@ -8,7 +8,6 @@ class WindowsSpotlight(Website):
     description = 'High resolution quality images from Windows 10 Spotlight'
     url = 'https://windows10spotlight.com/'
 
-
     def process(self, date, subkey):
         soup = self.get_soup_from_url(self.url)
         imgs = self.find_tags_from_soup(soup, "img", attributes={"class": "thumbnail wp-post-image"})

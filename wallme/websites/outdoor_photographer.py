@@ -8,7 +8,6 @@ class OutdoorPhotographer(Website):
     description = 'Outdoor pictures, essentially animals and landscapes'
     url = 'https://www.outdoorphotographer.com/blog/category/photo-of-the-day/'
 
-
     def process(self, date, subkey):
         soup = self.get_soup_from_url(self.url)
         imgs = self.find_tags_from_soup(soup, "img", attributes={"class": "wp-post-image"})

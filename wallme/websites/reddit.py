@@ -9,11 +9,9 @@ class Reddit(Website):
     description = 'Top pictures from the topic of your choice. Use \"reddit.<subreddit>\" as the key. (e.g.: reddit.earthporn)'
     url = 'http://www.reddit.com/r/'
 
-
     def pre_process(self, subkey):
         if(subkey is None):
             raise WallmeException('You must specify the subreddit: "reddit.<subreddit>" (e.g.: reddit.earthporn)')
-
 
     def process(self, date, subkey):
         json = self.get_json_from_url('http://www.reddit.com/r/' + subkey + '/top/.json?limit=100')

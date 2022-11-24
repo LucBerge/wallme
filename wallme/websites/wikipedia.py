@@ -9,7 +9,6 @@ class Wikipedia(Website):
     domain = "https://en.wikipedia.org"
     url = domain + "/wiki/Wikipedia:Picture_of_the_day"
 
-
     def process(self, date, subkey):
         soup = self.get_soup_from_url(self.url)
         links = self.find_tags_from_soup(soup, "a", attributes={"class": "image"})

@@ -3,7 +3,7 @@
 import json
 import os
 from .websites import WEBSITES
-
+from .exceptions import WallmeException
 
 
 def get_key_subkey_from_fullkey(full_key):
@@ -12,6 +12,7 @@ def get_key_subkey_from_fullkey(full_key):
         return full_key[:dot_index], full_key[dot_index + 1:]
     else:
         return full_key, None
+
 
 def get_website_from_key(key):
     if(key not in WEBSITES.keys()):

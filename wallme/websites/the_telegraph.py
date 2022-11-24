@@ -9,7 +9,6 @@ class TheTelegraph(Website):
     domain = 'https://www.telegraph.co.uk'
     url = domain + '/pictures-of-the-day/'
 
-
     def process(self, date, subkey):
         soup = self.get_soup_from_url(self.url)
         h2s = self.find_tags_from_soup(soup, "h2", attributes={"class": "u-heading-1"})
