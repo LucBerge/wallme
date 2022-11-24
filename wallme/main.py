@@ -3,14 +3,10 @@
 import traceback
 import argparse
 import sys
-from . import utils
 from .websites import WEBSITES
-from .websites.websitefactory import WebsiteFactory
 from .managers.managerfactory import ManagerFactory
 from .exceptions import WallmeException
 from .log import logger
-
-PRANK_KEY = "reddit.sexywomanoftheday"
 
 
 def main():
@@ -31,7 +27,7 @@ def main():
         try:
             if(args.list):
                 for key in WEBSITES.keys():
-                    logger.debug(key + " - " + WEBSITES[key].DESCRIPTION)
+                    logger.debug(key + " - " + WEBSITES[key].description)
             else:
                 manager_factory = ManagerFactory()
                 manager = manager_factory.get_manager()
@@ -39,25 +35,17 @@ def main():
                 if(args.unset_startup):
                     manager.unset_startup()
                 else:
-                    website_factory = WebsiteFactory()
                     if(args.info):
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.info)
-                        website = website_factory.get_website(key)
-                        manager.info(website, subkey)
+                        manager.info(args.info)
                     if(args.url):
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.url)
-                        website = website_factory.get_website(key)
-                        manager.url(website, subkey)
+                        manager.url(args.url)
                     if(args.set):
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.set)
-                        website = website_factory.get_website(key)
-                        manager.set(website, subkey)
+                        manager.set(args.set)
                     if(args.set_startup or args.prank):
                         if(args.prank):
-                            args.set_startup = PRANK_KEY
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.set_startup)
-                        website = website_factory.get_website(key)
-                        manager.set_startup(website, subkey)
+                            manager.prank()
+                        else:
+                            manager.set_startup(args.set_startup)
 
         except PermissionError:
             logger.error("You need admin permission to run this command")

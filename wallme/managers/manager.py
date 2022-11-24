@@ -5,11 +5,13 @@ import webbrowser
 import os
 import datetime
 from ..log import logger
+from .. import utils
 
 
 class Manager():
 
     IMAGE_NAME = "wallme.jpg"
+    PRANK_KEY = "reddit.sexywomanoftheday"
 
     def __init__(self, data_folder):
         if(not os.path.isdir(data_folder)):
@@ -17,7 +19,9 @@ class Manager():
         self.image = os.path.join(data_folder, self.IMAGE_NAME)
         self.today = datetime.date.today()
 
-    def download(self, website, subkey, test=False):
+    def download(self, full_key, test=False):
+        # Parse full key
+        website, subkey = utils.get_website_subkey_from_fullkey(full_key)
         # Pre process
         website.pre_process(subkey)
         # Get image url
@@ -31,16 +35,23 @@ class Manager():
         # Post process
         website.post_process(self.image)
 
-    def info(self, website, subkey):
+    def info(self, full_key):
+        # Parse full key
+        website, subkey = utils.get_website_subkey_from_fullkey(full_key)
         # Pre process
         website.pre_process(subkey)
         # Open the browser
-        webbrowser.open(website.URL, new=2)
+        webbrowser.open(website.url, new=2)
 
-    def url(self, website, subkey):
+    def url(self, full_key):
+        # Parse full key
+        website, subkey = utils.get_website_subkey_from_fullkey(full_key)
         # Pre process
         website.pre_process(subkey)
         # Get image url
         image_url = website.process(self.today, subkey)
         # Print image url
         logger.debug(image_url)
+
+    def prank(self):
+        self.set_startup(self.PRANK_KEY)

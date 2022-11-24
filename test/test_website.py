@@ -2,7 +2,6 @@
 
 from wallme import utils
 from wallme.managers.managerfactory import ManagerFactory
-from wallme.websites.websitefactory import WebsiteFactory
 
 
 class TestWebsite:
@@ -13,12 +12,12 @@ class TestWebsite:
         assert key == expected_key
         assert subkey == expected_subkey
 
-        website = WebsiteFactory().get_website(key)
-        assert website == expected_website
+        website = utils.get_website_from_key(key)
+        assert type(website) == expected_website
 
         manager = ManagerFactory().get_manager()
 
         if (date is not None):
             manager.today = date
 
-        manager.set(website, subkey, test=True)
+        manager.set(full_key, test=True)

@@ -1,24 +1,18 @@
 # coding: utf8
 
-from .. import utils
-
-KEY = 'the-telegraph'
-DESCRIPTION = 'Pictures reflecting the political, social or environmental situations in the world'
-DOMAIN = 'https://www.telegraph.co.uk'
-URL = DOMAIN + '/pictures-of-the-day/'
+from .website import Website
 
 
-def pre_process(subkey):
-    return None
+class TheTelegraph(Website):
+    key = 'the-telegraph'
+    description = 'Pictures reflecting the political, social or environmental situations in the world'
+    domain = 'https://www.telegraph.co.uk'
+    url = domain + '/pictures-of-the-day/'
 
 
-def process(date, subkey):
-    soup = utils.get_soup_from_url(URL)
-    h2s = utils.find_tags_from_soup(soup, "h2", attributes={"class": "u-heading-1"})
-    soup = utils.get_soup_from_url("https://www.telegraph.co.uk" + h2s[0].a.get('href'))
-    imgs = utils.find_tags_from_soup(soup, "img", attributes={"class": "gallery-item__image"})
-    return DOMAIN + imgs[0].get('src').split('?')[0]
-
-
-def post_process(image):
-    return None
+    def process(self, date, subkey):
+        soup = self.get_soup_from_url(self.url)
+        h2s = self.find_tags_from_soup(soup, "h2", attributes={"class": "u-heading-1"})
+        soup = self.get_soup_from_url("https://www.telegraph.co.uk" + h2s[0].a.get('href'))
+        imgs = self.find_tags_from_soup(soup, "img", attributes={"class": "gallery-item__image"})
+        return self.domain + imgs[0].get('src').split('?')[0]
