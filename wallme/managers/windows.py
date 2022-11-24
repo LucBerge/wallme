@@ -34,3 +34,12 @@ class Windows(Manager):
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
             winreg.DeleteValue(reg_key, self.REGISTRY_KEY)
+
+    def get_startup(self):
+        try:
+            reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_READ)
+            with reg_key:
+                value = winreg.QueryValueEx(reg_key, self.REGISTRY_KEY)[0]
+                return value.split(' ')[-1]
+        except FileNotFoundError:
+            return None

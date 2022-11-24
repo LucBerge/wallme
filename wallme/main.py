@@ -7,6 +7,7 @@ from .websites import WEBSITES
 from .managers.managerfactory import ManagerFactory
 from .exceptions import WallmeException
 from .log import logger
+from .gui import Gui
 
 
 def main():
@@ -22,7 +23,9 @@ def main():
     args = parser.parse_args()
 
     if(len(sys.argv) <= 1):
-        parser.print_help()
+        gui = Gui()
+        gui.resizable(False, False)
+        gui.mainloop()
     else:
         try:
             if(args.list):
