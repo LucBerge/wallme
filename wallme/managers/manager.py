@@ -28,7 +28,7 @@ class Manager():
         image_url = website.process(self.today, subkey)
         # Download image
         logger.debug("Downloading image from " + image_url, flush=True)
-        img_data = requests.get(image_url).content
+        img_data = requests.get(image_url, headers=website.HEADERS).content
         with open(self.image, 'wb') as handler:
             handler.write(img_data)
         logger.debug("Image saved to " + self.image)
