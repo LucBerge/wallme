@@ -1,13 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
-from tkinter.messagebox import showinfo
 from PIL import ImageTk, Image
 from .websites import WEBSITES
 from .managers.managerfactory import ManagerFactory
-from .exceptions import WallmeException
 import threading
 import os
 from . import utils
+
 
 class WallmeCanvas(tk.Canvas):
 
@@ -31,7 +29,7 @@ class WallmeCanvas(tk.Canvas):
         return label
 
     def create_list_box(self, x1, y1, x2, y2):
-        var = tk.Variable(value=tuple([key.replace('-',' ').capitalize() for key in WEBSITES.keys()]))
+        var = tk.Variable(value=tuple([key.replace('-', ' ').capitalize() for key in WEBSITES.keys()]))
         listbox = tk.Listbox(
             self,
             listvariable=var,
@@ -56,6 +54,7 @@ class WallmeCanvas(tk.Canvas):
         entry.place(x=x1, y=y1)
         return sv
 
+
 class Gui(tk.Tk):
     TITLE = "Wallme"
 
@@ -67,28 +66,28 @@ class Gui(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        #Get manager
+        # Get manager
         manager_factory = ManagerFactory()
         self.manager = manager_factory.get_manager()
 
-        #configure the root window
+        # configure the root window
         self.title(self.TITLE)
         self.geometry("1110x543")
-        self.configure(bg = self.COLOR_LIGHT_GREY)
+        self.configure(bg=self.COLOR_LIGHT_GREY)
 
-        #canvas
+        # canvas
         canvas = WallmeCanvas(
             self,
-            bg = self.COLOR_LIGHT_GREY,
-            height = 543,
-            width = 1110,
-            bd = 0,
-            highlightthickness = 0,
-            relief = "ridge"
+            bg=self.COLOR_LIGHT_GREY,
+            height=543,
+            width=1110,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge"
         )
-        canvas.place(x = 0, y = 0)
+        canvas.place(x=0, y=0)
 
-        #IMAGE
+        # IMAGE
         self.image = canvas.create_image(
             0,
             0,
@@ -96,16 +95,16 @@ class Gui(tk.Tk):
             540,
             self.manager.image)
 
-        #LIST LABEL
+        # LIST LABEL
         canvas.create_text(
             970,
             10,
             970,
             30,
-            text = "Website",
-            anchor = "w")
-        
-        #LIST
+            text="Website",
+            anchor="w")
+
+        # LIST
         self.listbox = canvas.create_list_box(
             970,
             30,
@@ -113,86 +112,87 @@ class Gui(tk.Tk):
             400)
         self.listbox.bind('<<ListboxSelect>>', self.list_items_selected)
 
-        #SUBKEY LABEL
+        # SUBKEY LABEL
         canvas.create_text(
             970,
             370,
             970,
             390,
-            text = "Subkey",
-            anchor = "w")
+            text="Subkey",
+            anchor="w")
 
-        #SUBKEY ENTRY
+        # SUBKEY ENTRY
         self.subkey_entry = canvas.create_entry(
             970,
             390,
             1100,
             410,
             self.entry_has_changed,
-            width = 20)
+            width=20)
 
-        #SET
+        # SET
         self.set_button = canvas.create_button(
             970,
             420,
             1100,
             440,
-            text = "SET",
-            width = 17,
+            text="SET",
+            width=17,
             command=self.set)
 
-        #INFO
+        # INFO
         self.info_button = canvas.create_button(
             970,
             450,
             1100,
             470,
-            text = "INFO",
-            width = 17,
+            text="INFO",
+            width=17,
             command=self.info)
 
-        #SET STARTUP
+        # SET STARTUP
         self.set_startup_button = canvas.create_button(
             970,
             480,
             1100,
             500,
-            text = "SET STARTUP",
-            width = 17,
+            text="SET STARTUP",
+            width=17,
             command=self.set_startup)
         self.set_startup_button["state"] = tk.DISABLED
-        
-        #UNSET STARTUP
+
+        # UNSET STARTUP
         self.unset_startup_button = canvas.create_button(
             970,
             510,
             1100,
             530,
-            text = "UNSET STARTUP",
-            width = 17,
+            text="UNSET STARTUP",
+            width=17,
             command=self.unset_startup)
         self.unset_startup_button["state"] = tk.DISABLED
 
-        #Get current startup value
+        # Get current startup value
         fullkey = self.manager.get_startup()
-        #If startup value exists
+        # If startup value exists
         if(fullkey is not None):
-            #Get key and subkey
+            # Get key and subkey
             key, subkey = utils.get_key_subkey_from_fullkey(fullkey)
-            #Set subkey entry value
-            self.subkey_entry.set(subkey)
-            #Get index
+            # Set subkey entry value
+            if(subkey is not None):
+                self.subkey_entry.set(subkey)
+            # Get index
             index = list(WEBSITES).index(key)
-            #Select item in list box
+            # Select item in list box
             self.listbox.select_set(index)
-            #Create event
+            # Create event
             self.list_items_selected(None)
 
     def update_image(self, key):
         try:
-            #Download image
+            # Download image
             self.manager.download(key)
-            #Set image
+            # Set image
             new_image = Image.open(self.manager.image)
             new_image = new_image.resize((960, 540))
             photo_image = ImageTk.PhotoImage(new_image)
@@ -205,11 +205,11 @@ class Gui(tk.Tk):
     def get_selected_key(self):
         if(len(self.listbox.curselection()) == 0):
             return None
-        #Get index
+        # Get index
         index = self.listbox.curselection()[0]
-        #Get key
+        # Get key
         key = list(WEBSITES.keys())[index]
-        #Get subkey
+        # Get subkey
         subkey = self.subkey_entry.get()
         if(subkey == ""):
             return key
@@ -217,30 +217,30 @@ class Gui(tk.Tk):
             return key + "." + subkey
 
     def list_items_selected(self, event):
-        #Get key
+        # Get key
         fullkey = self.get_selected_key()
-        #If key is not None
+        # If key is not None
         if(fullkey is not None):
-            #Get current startup value
+            # Get current startup value
             current_startup = self.manager.get_startup()
-            #If selected item is the startup value
+            # If selected item is the startup value
             if((current_startup is not None) and ((current_startup in fullkey) or (fullkey in current_startup))):
-                #Disable set startup button
+                # Disable set startup button
                 self.set_startup_button["state"] = tk.DISABLED
-                #Enable unset startup button
+                # Enable unset startup button
                 self.unset_startup_button["state"] = tk.NORMAL
             else:
-                #Enable set startup button
+                # Enable set startup button
                 self.set_startup_button["state"] = tk.NORMAL
-                #Disable unset startup button
+                # Disable unset startup button
                 self.unset_startup_button["state"] = tk.DISABLED
-            
-            #Enable set button
+
+            # Enable set button
             self.set_button["state"] = tk.NORMAL
-            #Enable info button
+            # Enable info button
             self.info_button["state"] = tk.NORMAL
-            
-            #Set image
+
+            # Set image
             if(event is None):
                 self.update_image(fullkey)
             else:
@@ -248,44 +248,44 @@ class Gui(tk.Tk):
                 thread.start()
 
     def entry_has_changed(self, entry):
-        #Clear listbox selection
+        # Clear listbox selection
         self.listbox.selection_clear(0, 'end')
-        #Disable set button
+        # Disable set button
         self.set_button["state"] = tk.DISABLED
-        #Disable info button
+        # Disable info button
         self.info_button["state"] = tk.DISABLED
-        #Disable set startup button
+        # Disable set startup button
         self.set_startup_button["state"] = tk.DISABLED
-        #Disable unset startup button
+        # Disable unset startup button
         self.unset_startup_button["state"] = tk.DISABLED
 
     def set(self):
-        #Get key
+        # Get key
         fullkey = self.get_selected_key()
-        #Set
+        # Set
         thread = threading.Thread(target=self.manager.set, args=(fullkey,))
         thread.start()
 
     def info(self):
-        #Get index
+        # Get index
         fullkey = self.get_selected_key()
-        #Info
+        # Info
         self.manager.info(fullkey)
 
     def set_startup(self):
-        #Get index
+        # Get index
         fullkey = self.get_selected_key()
-        #Disable set startup button
+        # Disable set startup button
         self.set_startup_button["state"] = tk.DISABLED
-        #Enable unset startup button
+        # Enable unset startup button
         self.unset_startup_button["state"] = tk.NORMAL
-        #Set startup
+        # Set startup
         self.manager.set_startup(fullkey)
 
     def unset_startup(self):
-        #Enable set startup button
+        # Enable set startup button
         self.set_startup_button["state"] = tk.NORMAL
-        #Disable unset startup button
+        # Disable unset startup button
         self.unset_startup_button["state"] = tk.DISABLED
-        #Unset startup
+        # Unset startup
         self.manager.unset_startup()
