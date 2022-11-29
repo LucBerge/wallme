@@ -34,7 +34,12 @@ jobs:
 
     - name: Test with pytest and codecoverage
       run: |
-        pytest test --cov=wallme/ --cov-report=xml
+        if [ "$RUNNER_OS" == "Windows" ]; then
+          pytest test --cov=wallme/ --cov-report=xml
+        else
+          sudo pytest test --cov=wallme/ --cov-report=xml
+        fi
+      shell: bash
 
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v2
