@@ -32,3 +32,6 @@ class TestReddit(TestWebsite):
             assert False
         except Exception:
             assert True
+
+    def test_set_unset_startup_cityporn(self):
+        self._test_set_unset_startup("reddit.cityporn")

@@ -12,3 +12,6 @@ class TestTheGuardian(TestWebsite):
 
     def test_set(self):
         self._test_set("the-guardian")
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("the-guardian")

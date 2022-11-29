@@ -1,6 +1,8 @@
+build
+output
 todo.txt
+launcher.py
 *.pyc
 *.jpg
 *.spec
 *.xml
-build

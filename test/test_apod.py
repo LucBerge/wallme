@@ -28,3 +28,6 @@ class TestApod(TestWebsite):
             assert False
         except Exception:
             assert True
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("apod")

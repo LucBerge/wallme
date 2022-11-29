@@ -12,3 +12,6 @@ class TestTetras(TestWebsite):
 
     def test_set(self):
         self._test_set("tetras")
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("tetras")

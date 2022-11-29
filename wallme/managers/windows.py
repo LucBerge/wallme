@@ -4,6 +4,7 @@ import ctypes
 import winreg
 from .manager import Manager
 from ..exceptions import WallmeException
+from .. import utils
 import os
 
 
@@ -22,6 +23,9 @@ class Windows(Manager):
                 raise WallmeException("Cannot set wallpaper")
 
     def set_startup(self, full_key):
+        # Check the full key is correct
+        utils.get_website_subkey_from_fullkey(full_key)
+        # Set startup
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
             winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min wallme.exe -set " + full_key)

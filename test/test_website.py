@@ -30,3 +30,23 @@ class TestWebsite:
         if (date is not None):
             manager.today = date
         manager.set(full_key, test=True)
+
+    def _test_set_unset_startup(self, full_key):
+        manager = ManagerFactory().get_manager()
+
+        # Get previous value
+        previous_value = manager.get_startup()
+
+        # Check the value as been set
+        manager.set_startup(full_key)
+        value = manager.get_startup()
+        assert value == full_key
+
+        # Check the value as been unset
+        manager.unset_startup()
+        value = manager.get_startup()
+        assert value is None
+
+        # Restore previous value
+        if(previous_value is not None):
+            manager.set_startup(previous_value)

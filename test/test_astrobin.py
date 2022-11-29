@@ -12,3 +12,6 @@ class TestAstrobin(TestWebsite):
 
     def test_set(self):
         self._test_set("astrobin")
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("astrobin")
