@@ -6,19 +6,25 @@ import datetime
 
 
 class TestApod(TestWebsite):
-    def test_apod(self):
-        self.simple_test("apod", "apod", None, Apod)
+    def test_info(self):
+        self._test_info("apod")
 
-    def test_apod_video(self):
+    def test_url(self):
+        self._test_url("apod")
+
+    def test_set(self):
+        self._test_set("apod")
+
+    def test_set_video(self):
         Apod.url = "https://apod.nasa.gov/apod/ap220209.html"
         date = datetime.datetime.strptime('09/02/2022', '%d/%m/%Y')
-        self.simple_test("apod", "apod", None, Apod, date=date)
+        self._test_set("apod", date=date)
 
-    def test_apod_error(self):
+    def test_set_error(self):
         Apod.url = "https://fake.url"
         date = datetime.datetime.strptime('10/02/2022', '%d/%m/%Y')
         try:
-            self.simple_test("apod", "apod", None, Apod, date=date)
+            self._test_set("apod", date=date)
             assert False
         except Exception:
             assert True

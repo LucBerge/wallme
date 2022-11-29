@@ -1,9 +1,14 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.wikipedia import Wikipedia
 
 
 class TestWikipedia(TestWebsite):
-    def test_wikipedia(self):
-        self.simple_test("wikipedia", "wikipedia", None, Wikipedia)
+    def test_info(self):
+        self._test_info("wikipedia")
+
+    def test_url(self):
+        self._test_url("wikipedia")
+
+    def test_set(self):
+        self._test_set("wikipedia")

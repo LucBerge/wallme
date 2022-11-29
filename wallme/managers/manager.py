@@ -35,13 +35,15 @@ class Manager():
         # Post process
         website.post_process(self.image)
 
-    def info(self, full_key):
+    def info(self, full_key, test=False):
         # Parse full key
         website, subkey = utils.get_website_subkey_from_fullkey(full_key)
         # Pre process
         website.pre_process(subkey)
         # Open the browser
-        webbrowser.open(website.url, new=2)
+        if(not test):
+            webbrowser.open(website.url, new=2)
+        return website.url
 
     def url(self, full_key):
         # Parse full key
@@ -52,6 +54,7 @@ class Manager():
         image_url = website.process(self.today, subkey)
         # Print image url
         logger.debug(image_url)
+        return image_url
 
     def prank(self):
         self.set_startup(self.PRANK_KEY)

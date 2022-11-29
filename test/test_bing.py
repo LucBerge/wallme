@@ -1,9 +1,14 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.bing import Bing
 
 
 class TestBing(TestWebsite):
-    def test_bing(self):
-        self.simple_test("bing", "bing", None, Bing)
+    def test_info(self):
+        self._test_info("bing")
+
+    def test_url(self):
+        self._test_url("bing")
+
+    def test_set(self):
+        self._test_set("bing")

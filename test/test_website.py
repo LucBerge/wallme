@@ -1,23 +1,32 @@
 # coding: utf8
 
-from wallme import utils
 from wallme.managers.managerfactory import ManagerFactory
+import requests
 
 
 class TestWebsite:
+    HEADERS = {'User-Agent': 'Wallme-Bot/1.0'}
 
-    def simple_test(self, full_key, expected_key, expected_subkey, expected_website, date=None):
-
-        key, subkey = utils.get_key_subkey_from_fullkey(full_key)
-        assert key == expected_key
-        assert subkey == expected_subkey
-
-        website = utils.get_website_from_key(key)
-        assert type(website) == expected_website
-
+    def _test_info(self, full_key):
         manager = ManagerFactory().get_manager()
+        url = manager.info(full_key, test=True)
+        webpage = requests.get(url, headers=self.HEADERS)
 
+        # Check status code
+        assert webpage.status_code == 200
+
+    def _test_url(self, full_key):
+        manager = ManagerFactory().get_manager()
+        url = manager.url(full_key)
+        webpage = requests.get(url, headers=self.HEADERS)
+
+        # Check status code
+        assert webpage.status_code == 200
+        # Check content type is an image
+        assert 'image' in webpage.headers["Content-Type"]
+
+    def _test_set(self, full_key, date=None):
+        manager = ManagerFactory().get_manager()
         if (date is not None):
             manager.today = date
-
         manager.set(full_key, test=True)

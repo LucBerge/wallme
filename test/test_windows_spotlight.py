@@ -1,9 +1,14 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.windows_spotlight import WindowsSpotlight
 
 
 class TestWindowsSpotlight(TestWebsite):
-    def test_wikipedia(self):
-        self.simple_test("windows-spotlight", "windows-spotlight", None, WindowsSpotlight)
+    def test_info(self):
+        self._test_info("windows-spotlight")
+
+    def test_url(self):
+        self._test_url("windows-spotlight")
+
+    def test_set(self):
+        self._test_set("windows-spotlight")

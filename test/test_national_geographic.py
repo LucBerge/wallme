@@ -1,9 +1,14 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.national_geographic import NationalGeographic
 
 
 class TestNationalGeographic(TestWebsite):
-    def test_national_geographic(self):
-        self.simple_test("national-geographic", "national-geographic", None, NationalGeographic)
+    def test_info(self):
+        self._test_info("national-geographic")
+
+    def test_url(self):
+        self._test_url("national-geographic")
+
+    def test_set(self):
+        self._test_set("national-geographic")

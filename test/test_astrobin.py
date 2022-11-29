@@ -1,9 +1,14 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.astrobin import Astrobin
 
 
 class TestAstrobin(TestWebsite):
-    def test_apod(self):
-        self.simple_test("astrobin", "astrobin", None, Astrobin)
+    def test_info(self):
+        self._test_info("astrobin")
+
+    def test_url(self):
+        self._test_url("astrobin")
+
+    def test_set(self):
+        self._test_set("astrobin")

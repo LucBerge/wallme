@@ -1,9 +1,14 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.epod import Epod
 
 
 class TestEpod(TestWebsite):
-    def test_epod(self):
-        self.simple_test("epod", "epod", None, Epod)
+    def test_info(self):
+        self._test_info("epod")
+
+    def test_url(self):
+        self._test_url("epod")
+
+    def test_set(self):
+        self._test_set("epod")

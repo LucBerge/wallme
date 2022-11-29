@@ -1,30 +1,34 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites.reddit import Reddit
 
 
 class TestReddit(TestWebsite):
+    def test_info_cityporn(self):
+        self._test_info("reddit.cityporn")
 
-    def test_reddit_cityporn(self):
-        self.simple_test("reddit.cityporn", "reddit", "cityporn", Reddit)
+    def test_url_cityporn(self):
+        self._test_url("reddit.cityporn")
 
-    def test_reddit_earthporn(self):
-        self.simple_test("reddit.earthporn", "reddit", "earthporn", Reddit)
+    def test_set_cityporn(self):
+        self._test_set("reddit.cityporn")
 
-    def test_reddit_sexywomanoftheday(self):
-        self.simple_test("reddit.sexywomanoftheday", "reddit", "sexywomanoftheday", Reddit)
+    def test_set_earthporn(self):
+        self._test_set("reddit.earthporn")
 
-    def test_reddit_error(self):
+    def test_set_sexywomanoftheday(self):
+        self._test_set("reddit.sexywomanoftheday")
+
+    def test_set_error(self):
         try:
-            self.simple_test("reddit", "reddit", None, Reddit)
+            self._test_set("reddit")
             assert False
         except Exception:
             assert True
 
-    def test_reddit_no_image(self):
+    def test_set_no_image(self):
         try:
-            self.simple_test("reddit.askreddit", "reddit", "askreddit", Reddit)
+            self._test_set("reddit.askreddit")
             assert False
         except Exception:
             assert True
