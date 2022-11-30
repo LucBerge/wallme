@@ -76,7 +76,7 @@ jobs:
     - name: Build
       run: |
         echo -e "from wallme.main import main\nmain()" >> wallme.py
-        pyinstaller --noconfirm --onefile --windowed "wallme.py"
+        pyinstaller --noconfirm --onefile --windowed --distpath ./dist/ "wallme.py"
 
     - name: Publish
       uses: "marvinpinto/action-automatic-releases@latest"
