@@ -67,24 +67,24 @@ jobs:
     - name: Get version
       run: |
         chmod +x devscript/get_version.sh
-        export VERSION=$(devscript/get_version.sh)
-        echo The new version is $VERSION
-        echo "::set-env name=VERSION::$VERSION"
+        export WALLME_VERSION=$(devscript/get_version.sh)
+        echo The new version is $WALLME_VERSION
+        echo "::set-env name=WALLME_VERSION::$WALLME_VERSION"
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
     - name: Build
       run: |
         echo -e "from wallme.main import main\nmain()" >> wallme.py
-        pyinstaller --noconfirm --onefile --windowed --distpath ./dist/ "wallme.py"
+        pyinstaller --noconfirm --onefile --windowed "wallme.py"
 
     - name: Publish
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: ${{ env.VERSION }}
+        automatic_release_tag: ${{ env.WALLME_VERSION }}
         prerelease: false
-        title: ${{ env.VERSION }}
+        title: ${{ env.WALLME_VERSION }}
         files: |
-          /home/runner/work/wallme/wallme/dist/wallme/*
-          ./dist/*
+          /home/runner/work/wallme/wallme/dist/wallme/wallme.exe
+          ./dist/wallme.exe
