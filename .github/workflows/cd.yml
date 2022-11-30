@@ -75,7 +75,8 @@ jobs:
 
     - name: Build
       run: |
-        sh devscript/create_exe.sh
+        chmod +x devscript/create_exe.sh
+        ./devscript/create_exe.sh
 
     - name: Publish
       uses: "marvinpinto/action-automatic-releases@latest"
