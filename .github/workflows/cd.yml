@@ -38,14 +38,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install setuptools wheel pyinstaller
 
-      - name: Get version
-        run: |
-          chmod +x devscript/get_version.sh
-          export VERSION=$(devscript/get_version.sh)
-          echo The new version is $VERSION
-          echo "::set-env name=VERSION::$VERSION"
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+    - name: Get version
+      run: |
+        chmod +x devscript/get_version.sh
+        export VERSION=$(devscript/get_version.sh)
+        echo The new version is $VERSION
+        echo "::set-env name=VERSION::$VERSION"
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
     - name: Build Pypi
       run: |
