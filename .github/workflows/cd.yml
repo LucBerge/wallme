@@ -86,4 +86,5 @@ jobs:
         prerelease: false
         title: ${{ env.VERSION }}
         files: |
-          ./dist/wallme.exe
+          /home/runner/work/wallme/wallme/dist/wallme
+          ./dist/
