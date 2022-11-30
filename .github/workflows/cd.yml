@@ -22,8 +22,8 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
 
-  deploy:
-    name: Deploy
+  deploy_pypi:
+    name: Deploy Pypi
   
     runs-on: ubuntu-latest
 
@@ -36,7 +36,33 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel pyinstaller
+        pip install setuptools wheel
+
+    - name: Build
+      run: |
+        python setup.py sdist bdist_wheel
+
+    - name: Publish
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+
+  deploy_github:
+    name: Deploy GitHub
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
 
     - name: Get version
       run: |
@@ -47,21 +73,11 @@ jobs:
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
-    - name: Build Pypi
-      run: |
-        python setup.py sdist bdist_wheel
-
-    - name: Build Exe
+    - name: Build
       run: |
         sh devscript/create_exe.sh
 
     - name: Publish
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
-
-    - name: Publish Exe
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
