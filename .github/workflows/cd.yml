@@ -51,7 +51,7 @@ jobs:
   deploy_github:
     name: Deploy GitHub
   
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -59,7 +59,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.10.1'
 
     - name: Install dependencies
       run: |
@@ -79,7 +79,6 @@ jobs:
       run: |
         chmod +x devscript/create_exe.sh
         ./devscript/create_exe.sh
-        mv dist/wallme dist/wallme.exe
         ls -lsR
 
     - name: Publish
