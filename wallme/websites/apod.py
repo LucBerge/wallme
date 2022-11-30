@@ -9,7 +9,9 @@ from ..log import logger
 class Apod(Website):
     key = 'apod'
     description = 'Astronomy Picture Of the Day'
-    url = 'https://apod.nasa.gov/apod/astropix.html'
+    info_url = 'https://apod.nasa.gov/apod/astropix.html'
+    process_url = 'https://apod.nasa.gov/apod/ap'
+    image_url = 'https://apod.nasa.gov/apod/'
 
     def _process(self, url):
         soup = self.get_soup_from_url(url)
@@ -17,13 +19,13 @@ class Apod(Website):
 
     def process(self, date, subkey):
         try:
-            img = self._process(self.url)
+            img = self._process(self.info_url)
         except Exception:
             try:
                 logger.warning('Could not find today\'s picture, getting yesterday\'s one')
                 date = date - datetime.timedelta(days=1)
-                img = self._process('https://apod.nasa.gov/apod/ap' + date.strftime("%y%m%d") + '.html')
+                img = self._process(self.process_url + date.strftime("%y%m%d") + '.html')
             except Exception:
                 raise WallmeException('No picture found today neither yesterday. It could be a video.')
 
-        return 'https://apod.nasa.gov/apod/' + img
+        return self.image_url + img

@@ -43,8 +43,8 @@ class Manager():
         website.pre_process(subkey)
         # Open the browser
         if(not test):
-            webbrowser.open(website.url, new=2)
-        return website.url
+            webbrowser.open(website.info_url, new=2)
+        return website.info_url
 
     def url(self, full_key):
         # Parse full key
