@@ -75,8 +75,8 @@ jobs:
 
     - name: Build
       run: |
-        chmod +x devscript/create_exe.sh
-        ./devscript/create_exe.sh
+        echo -e "from wallme.main import main\nmain()" >> wallme.py
+        pyinstaller --noconfirm --onefile --windowed "wallme.py"
 
     - name: Publish
       uses: "marvinpinto/action-automatic-releases@latest"
