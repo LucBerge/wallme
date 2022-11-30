@@ -75,8 +75,9 @@ jobs:
 
     - name: Build
       run: |
-        echo -e "from wallme.main import main\nmain()" >> wallme.py
-        pyinstaller --noconfirm --onefile --windowed "wallme.py"
+        chmod +x devscript/create_exe.sh
+        ./devscript/create_exe.sh
+        mv dist/wallme dist/wallme.exe
         ls -lsR
 
     - name: Publish
