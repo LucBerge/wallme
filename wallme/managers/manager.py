@@ -13,7 +13,8 @@ class Manager():
     IMAGE_NAME = "wallme.jpg"
     PRANK_KEY = "reddit.sexywomanoftheday"
 
-    def __init__(self, data_folder):
+    def __init__(self, entry_point, data_folder):
+        self.entry_point = entry_point
         if(not os.path.isdir(data_folder)):
             os.makedirs(data_folder, 493)
         self.image = os.path.join(data_folder, self.IMAGE_NAME)

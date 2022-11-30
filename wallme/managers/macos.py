@@ -14,8 +14,8 @@ class MacOS(Manager):
                             end tell
                             END"""
 
-    def __init__(self):
-        super().__init__(self.DATA_FOLDER)
+    def __init__(self, entry_point):
+        super().__init__(entry_point, self.DATA_FOLDER)
 
     def set(self, website, subkey, test=False):
         super().download(website, subkey, test)

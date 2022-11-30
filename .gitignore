@@ -1,7 +1,8 @@
 build
-output
-todo.txt
+dist
 launcher.py
+launcher.spec
+todo.txt
 *.pyc
 *.jpg
 *.spec

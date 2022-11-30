@@ -11,8 +11,8 @@ class Linux(Manager):
     DATA_FOLDER = str(Path.home()) + "/wallme"
     SERVICE_FILE = "/lib/systemd/system/wallme.service"
 
-    def __init__(self):
-        super().__init__(self.DATA_FOLDER)
+    def __init__(self, entry_point):
+        super().__init__(entry_point, self.DATA_FOLDER)
 
     def set(self, full_key, test=False):
         super().download(full_key, test)
