@@ -1,17 +1,12 @@
 # coding: utf8
 
-KEY = 'tetras'
-DESCRIPTION = 'Amateur pictures of the Alpes and the Dauphine'
-URL = 'http://tetras.org/Semaine.jpg'
+from .website import Website
 
 
-def pre_process(subkey):
-    return None
+class Tetras(Website):
+    key = 'tetras'
+    description = 'Amateur pictures of the Alpes and the Dauphine'
+    info_url = 'http://tetras.org/Semaine.jpg'
 
-
-def process(date, subkey):
-    return URL
-
-
-def post_process(image):
-    return None
+    def process(self, date, subkey):
+        return self.info_url

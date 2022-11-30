@@ -13,16 +13,16 @@ class Log(object):
         self.name = name
 
     def debug(self, msg, CR=False, flush=False):
-        if(CR is True):
-            print(bcolors.CR + "[" + self.name + "] " + msg, flush=flush)
+        if (CR is True):
+            print(bcolors.CR + msg, flush=flush)
         else:
-            print("[" + self.name + "] " + msg, flush=flush)
+            print(msg, flush=flush)
 
     def warning(self, msg, flush=False):
-        print("[" + self.name + "] " + bcolors.WARNING + "WARNING : " + bcolors.END + msg, flush=flush)
+        print(bcolors.WARNING + "WARNING: " + bcolors.END + msg, flush=flush)
 
     def error(self, msg, flush=False):
-        print("[" + self.name + "] " + bcolors.FAIL + "ERROR : " + bcolors.END + msg, flush=flush)
+        print(bcolors.FAIL + "ERROR: " + bcolors.END + msg, flush=flush)
 
 
 logger = Log("wallme")

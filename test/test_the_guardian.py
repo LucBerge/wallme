@@ -1,9 +1,17 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites import the_guardian
 
 
 class TestTheGuardian(TestWebsite):
-    def test_the_guardian(self):
-        self.simple_test("the-guardian", "the-guardian", None, the_guardian)
+    def test_info(self):
+        self._test_info("the-guardian")
+
+    def test_url(self):
+        self._test_url("the-guardian")
+
+    def test_set(self):
+        self._test_set("the-guardian")
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("the-guardian")

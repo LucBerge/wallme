@@ -1,9 +1,17 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites import outdoor_photographer
 
 
-class TestNasa(TestWebsite):
-    def test_nasa(self):
-        self.simple_test("outdoor-photographer", "outdoor-photographer", None, outdoor_photographer)
+class TestOutdoorPhotographer(TestWebsite):
+    def test_info(self):
+        self._test_info("outdoor-photographer")
+
+    def test_url(self):
+        self._test_url("outdoor-photographer")
+
+    def test_set(self):
+        self._test_set("outdoor-photographer")
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("outdoor-photographer")

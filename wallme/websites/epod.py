@@ -1,21 +1,14 @@
 # coding: utf8
 
-from .. import utils
-
-KEY = 'epod'
-DESCRIPTION = 'Earth Picture Of the Day'
-URL = 'https://epod.usra.edu/'
+from .website import Website
 
 
-def pre_process(subkey):
-    return None
+class Epod(Website):
+    key = 'epod'
+    description = 'Earth Picture Of the Day'
+    info_url = 'https://epod.usra.edu/'
 
-
-def process(date, subkey):
-    soup = utils.get_soup_from_url(URL)
-    imgs = utils.find_tags_from_soup(soup, "a", attributes={"class": "asset-img-link"})
-    return imgs[0].get('href')
-
-
-def post_process(image):
-    return None
+    def process(self, date, subkey):
+        soup = self.get_soup_from_url(self.info_url)
+        imgs = self.find_tags_from_soup(soup, "a", attributes={"class": "asset-img-link"})
+        return imgs[0].get('href')

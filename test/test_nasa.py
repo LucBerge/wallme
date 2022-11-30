@@ -1,9 +1,17 @@
 # coding: utf8
 
 from .test_website import TestWebsite
-from wallme.websites import nasa
 
 
 class TestNasa(TestWebsite):
-    def test_nasa(self):
-        self.simple_test("nasa", "nasa", None, nasa)
+    def test_info(self):
+        self._test_info("nasa")
+
+    def test_url(self):
+        self._test_url("nasa")
+
+    def test_set(self):
+        self._test_set("nasa")
+
+    def test_set_unset_startup(self):
+        self._test_set_unset_startup("nasa")

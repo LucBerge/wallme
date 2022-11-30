@@ -1,6 +1,9 @@
-*.txt
+build
+dist
+launcher.py
+launcher.spec
+todo.txt
 *.pyc
 *.jpg
 *.spec
 *.xml
-build

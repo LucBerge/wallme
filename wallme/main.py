@@ -3,13 +3,11 @@
 import traceback
 import argparse
 import sys
-from . import utils
 from .websites import WEBSITES
-from .websites.websitefactory import WebsiteFactory
 from .managers.managerfactory import ManagerFactory
 from .exceptions import WallmeException
-
-PRANK_KEY = "reddit.sexywomanoftheday"
+from .log import logger
+from .gui import Gui
 
 
 def main():
@@ -24,47 +22,41 @@ def main():
     parser.add_argument('-prank', action='store_true', help='prank your friends')
     args = parser.parse_args()
 
-    if(len(sys.argv) <= 1):
-        parser.print_help()
+    if (len(sys.argv) <= 1):
+        gui = Gui()
+        gui.resizable(False, False)
+        gui.mainloop()
     else:
         try:
-            if(args.list):
+            if (args.list):
                 for key in WEBSITES.keys():
-                    print(key + " - " + WEBSITES[key].DESCRIPTION)
+                    logger.debug(key + " - " + WEBSITES[key].description)
             else:
                 manager_factory = ManagerFactory()
                 manager = manager_factory.get_manager()
 
-                if(args.unset_startup):
+                if (args.unset_startup):
                     manager.unset_startup()
                 else:
-                    website_factory = WebsiteFactory()
-                    if(args.info):
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.info)
-                        website = website_factory.get_website(key)
-                        manager.info(website, subkey)
-                    if(args.url):
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.url)
-                        website = website_factory.get_website(key)
-                        manager.url(website, subkey)
-                    if(args.set):
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.set)
-                        website = website_factory.get_website(key)
-                        manager.set(website, subkey)
-                    if(args.set_startup or args.prank):
-                        if(args.prank):
-                            args.set_startup = PRANK_KEY
-                        key, subkey = utils.get_key_subkey_from_fullkey(args.set_startup)
-                        website = website_factory.get_website(key)
-                        manager.set_startup(website, subkey)
+                    if (args.info):
+                        manager.info(args.info)
+                    if (args.url):
+                        manager.url(args.url)
+                    if (args.set):
+                        manager.set(args.set)
+                    if (args.set_startup or args.prank):
+                        if (args.prank):
+                            manager.prank()
+                        else:
+                            manager.set_startup(args.set_startup)
 
         except PermissionError:
-            print("You need admin permission to run this command")
+            logger.error("You need admin permission to run this command")
         except WallmeException as e:
-            print(e)
+            logger.error(str(e))
         except Exception:
             traceback.print_exc()
-            print("=========\nPlease, report this issue : https://github.com/LucBerge/wallme/issues")
+            logger.error("Please, report this issue : https://github.com/LucBerge/wallme/issues")
 
 
 if __name__ == "__main__":
