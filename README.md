@@ -1,15 +1,15 @@
 
 [![Version](https://img.shields.io/pypi/v/wallme?label=Version)](https://github.com/LucBerge/wallme/releases)
 [![Downloads](https://img.shields.io/github/downloads/lucberge/wallme/total?label=Downloads)](https://github.com/LucBerge/wallme/releases)
-[![test](https://img.shields.io/github/workflow/status/LucBerge/wallme/Test?branch=dev&label=Test)](https://github.com/LucBerge/wallme/actions/workflows/test.yml)
+[![Test](https://img.shields.io/github/workflow/status/LucBerge/wallme/Test/dev?label=Test)](https://github.com/LucBerge/wallme/actions/workflows/test.yml)
 [![Deploy](https://img.shields.io/github/workflow/status/LucBerge/wallme/CD?branch=master&label=Deploy)](https://github.com/LucBerge/wallme/actions/workflows/cd.yml)
-[![coverage](https://codecov.io/gh/LucBerge/wallme/branch/dev/graph/badge.svg?token=AH8jbVSPj3)](https://codecov.io/gh/LucBerge/wallme)
+[![Codecov](https://codecov.io/gh/LucBerge/wallme/branch/dev/graph/badge.svg?token=AH8jbVSPj3)](https://codecov.io/gh/LucBerge/wallme)
 
 <p align="center">
   <img width="1000" src="images/example.gif">
 </p>
 
-[![Pypi](https://img.shields.io/badge/Install_from-pypi-blue)](https://pypi.org/project/wallme/)
+[![Pypi](https://img.shields.io/badge/Install_with-Pypi-blue?logo=pypi&logoColor=white)](https://pypi.org/project/wallme/)
 [![GitHub](https://img.shields.io/badge/Install_from-GitHub-lightgrey?logo=github)](https://github.com/LucBerge/wallme/releases)
 
 # wallme
