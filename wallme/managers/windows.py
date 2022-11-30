@@ -18,7 +18,7 @@ class Windows(Manager):
 
     def set(self, full_key, test=False):
         super().download(full_key, test)
-        if(not test):
+        if (not test):
             if ctypes.windll.user32.SystemParametersInfoW(20, 0, self.image, 3) != 1:
                 error = ctypes.GetLastError()
                 raise WallmeException("Cannot set wallpaper: " + str(error))
@@ -29,7 +29,7 @@ class Windows(Manager):
         # Set startup
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
-            if('.exe' in self.entry_point):
+            if ('.exe' in self.entry_point):
                 startup_entry_point = self.entry_point
             else:
                 startup_entry_point = "wallme.exe"

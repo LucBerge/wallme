@@ -48,5 +48,5 @@ class TestWebsite:
         assert value is None
 
         # Restore previous value
-        if(previous_value is not None):
+        if (previous_value is not None):
             manager.set_startup(previous_value)

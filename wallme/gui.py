@@ -11,16 +11,16 @@ class WallmeCanvas(tk.Canvas):
 
     def create_text(self, x1, y1, x2, y2, **kwargs):
         text = super().create_text(
-            int((x2+x1)/2),
-            int((y2+y1)/2),
+            int((x2 + x1) / 2),
+            int((y2 + y1) / 2),
             **kwargs
         )
         return text
 
     def create_image(self, x1, y1, x2, y2, path):
-        if(os.path.exists(path)):
+        if (os.path.exists(path)):
             image = Image.open(path)
-            image = image.resize((x2-x1, y2-y1))
+            image = image.resize((x2 - x1, y2 - y1))
             self.photo_image = ImageTk.PhotoImage(image)
         else:
             self.photo_image = None
@@ -34,8 +34,8 @@ class WallmeCanvas(tk.Canvas):
             self,
             listvariable=var,
             selectmode=tk.SINGLE,
-            width=int((x2-x1)*82/500),
-            height=int((y2-y1)*13/220),
+            width=int((x2 - x1) * 82 / 500),
+            height=int((y2 - y1) * 13 / 220),
         )
         listbox.place(x=x1, y=y1)
         return listbox
@@ -175,11 +175,11 @@ class Gui(tk.Tk):
         # Get current startup value
         fullkey = self.manager.get_startup()
         # If startup value exists
-        if(fullkey is not None):
+        if (fullkey is not None):
             # Get key and subkey
             key, subkey = utils.get_key_subkey_from_fullkey(fullkey)
             # Set subkey entry value
-            if(subkey is not None):
+            if (subkey is not None):
                 self.subkey_entry.set(subkey)
             # Get index
             index = list(WEBSITES).index(key)
@@ -203,7 +203,7 @@ class Gui(tk.Tk):
             self.image.image = None
 
     def get_selected_key(self):
-        if(len(self.listbox.curselection()) == 0):
+        if (len(self.listbox.curselection()) == 0):
             return None
         # Get index
         index = self.listbox.curselection()[0]
@@ -211,7 +211,7 @@ class Gui(tk.Tk):
         key = list(WEBSITES.keys())[index]
         # Get subkey
         subkey = self.subkey_entry.get()
-        if(subkey == ""):
+        if (subkey == ""):
             return key
         else:
             return key + "." + subkey
@@ -220,11 +220,11 @@ class Gui(tk.Tk):
         # Get key
         fullkey = self.get_selected_key()
         # If key is not None
-        if(fullkey is not None):
+        if (fullkey is not None):
             # Get current startup value
             current_startup = self.manager.get_startup()
             # If selected item is the startup value
-            if((current_startup is not None) and ((current_startup in fullkey) or (fullkey in current_startup))):
+            if ((current_startup is not None) and ((current_startup in fullkey) or (fullkey in current_startup))):
                 # Disable set startup button
                 self.set_startup_button["state"] = tk.DISABLED
                 # Enable unset startup button
@@ -241,7 +241,7 @@ class Gui(tk.Tk):
             self.info_button["state"] = tk.NORMAL
 
             # Set image
-            if(event is None):
+            if (event is None):
                 self.update_image(fullkey)
             else:
                 thread = threading.Thread(target=self.update_image, args=(fullkey,))

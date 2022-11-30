@@ -5,11 +5,11 @@ from ..exceptions import WallmeException
 import sys
 
 system = platform.system()
-if(system == "Linux"):
+if (system == "Linux"):
     from .linux import Linux as M
-elif system == "Windows":
+elif (system == "Windows"):
     from .windows import Windows as M
-elif system == "Darwin":
+elif (system == "Darwin"):
     from .macos import MacOS as M
 
 

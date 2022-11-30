@@ -8,14 +8,14 @@ from .exceptions import WallmeException
 
 def get_key_subkey_from_fullkey(full_key):
     dot_index = full_key.find('.')
-    if dot_index > 0:
+    if (dot_index > 0):
         return full_key[:dot_index], full_key[dot_index + 1:]
     else:
         return full_key, None
 
 
 def get_website_from_key(key):
-    if(key not in WEBSITES.keys()):
+    if (key not in WEBSITES.keys()):
         raise WallmeException("Website '" + key + "' not supported. Use the -list option to list all the posibilities.")
     return WEBSITES[key]
 
@@ -27,7 +27,7 @@ def get_website_subkey_from_fullkey(full_key):
 
 
 def read_json(file_name):
-    if(not os.path.isfile(file_name)):
+    if (not os.path.isfile(file_name)):
         raise Exception('File ' + file_name + ' does not exist. Build it first.')
     file = open(file_name, 'r')
     data = json.loads(file.read())

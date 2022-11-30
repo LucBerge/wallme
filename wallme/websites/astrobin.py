@@ -20,6 +20,6 @@ class Astrobin(Website):
     def post_process(self, image):
         with Image.open(image) as img:
             width, height = img.size
-            if(width < height):
+            if (width < height):
                 img = img.transpose(Image.ROTATE_90)
                 img.save(image)

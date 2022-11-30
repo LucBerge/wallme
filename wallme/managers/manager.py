@@ -15,7 +15,7 @@ class Manager():
 
     def __init__(self, entry_point, data_folder):
         self.entry_point = entry_point
-        if(not os.path.isdir(data_folder)):
+        if (not os.path.isdir(data_folder)):
             os.makedirs(data_folder, 493)
         self.image = os.path.join(data_folder, self.IMAGE_NAME)
         self.today = datetime.date.today()
@@ -42,7 +42,7 @@ class Manager():
         # Pre process
         website.pre_process(subkey)
         # Open the browser
-        if(not test):
+        if (not test):
             webbrowser.open(website.info_url, new=2)
         return website.info_url
 

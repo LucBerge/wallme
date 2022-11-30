@@ -16,14 +16,14 @@ class Linux(Manager):
 
     def set(self, full_key, test=False):
         super().download(full_key, test)
-        if(not test):
+        if (not test):
             if os.system("/usr/bin/gsettings set org.gnome.desktop.background picture-uri " + self.image) != 0:
                 raise WallmeException("Cannot set wallpaper")
 
     def set_startup(self, full_key):
         self.unset_startup()
         user = os.popen("who | awk 'FNR == 1 {print $1}'").read().rstrip()
-        if(not os.path.exists(self.SERVICE_FILE)):
+        if (not os.path.exists(self.SERVICE_FILE)):
             with open(self.SERVICE_FILE, "wt") as f:
                 f.write("[Unit]\n\
 Description=Wallme service.\n\
@@ -40,13 +40,13 @@ WantedBy=multi-user.target")
         os.system("sudo systemctl enable wallme")
 
     def unset_startup(self):
-        if(os.path.exists(self.SERVICE_FILE)):
+        if (os.path.exists(self.SERVICE_FILE)):
             os.remove(self.SERVICE_FILE)
             os.system("sudo systemctl disable wallme")
 
     def get_startup(self):
         # If file not exists
-        if(not os.path.exists(self.SERVICE_FILE)):
+        if (not os.path.exists(self.SERVICE_FILE)):
             # Return None
             return None
         # Open file

@@ -13,7 +13,7 @@ class Log(object):
         self.name = name
 
     def debug(self, msg, CR=False, flush=False):
-        if(CR is True):
+        if (CR is True):
             print(bcolors.CR + msg, flush=flush)
         else:
             print(msg, flush=flush)

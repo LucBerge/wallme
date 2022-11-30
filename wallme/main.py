@@ -22,30 +22,30 @@ def main():
     parser.add_argument('-prank', action='store_true', help='prank your friends')
     args = parser.parse_args()
 
-    if(len(sys.argv) <= 1):
+    if (len(sys.argv) <= 1):
         gui = Gui()
         gui.resizable(False, False)
         gui.mainloop()
     else:
         try:
-            if(args.list):
+            if (args.list):
                 for key in WEBSITES.keys():
                     logger.debug(key + " - " + WEBSITES[key].description)
             else:
                 manager_factory = ManagerFactory()
                 manager = manager_factory.get_manager()
 
-                if(args.unset_startup):
+                if (args.unset_startup):
                     manager.unset_startup()
                 else:
-                    if(args.info):
+                    if (args.info):
                         manager.info(args.info)
-                    if(args.url):
+                    if (args.url):
                         manager.url(args.url)
-                    if(args.set):
+                    if (args.set):
                         manager.set(args.set)
-                    if(args.set_startup or args.prank):
-                        if(args.prank):
+                    if (args.set_startup or args.prank):
+                        if (args.prank):
                             manager.prank()
                         else:
                             manager.set_startup(args.set_startup)
