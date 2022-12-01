@@ -51,11 +51,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-        - os: ubuntu-latest
-          executable_file: wallme
-        - os: windows-latest
-          executable_file: wallme.exe
+        os: [ubuntu-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -75,8 +71,10 @@ jobs:
         ./devscript/create_exe.sh
       shell: bash
       
-    - uses: actions/upload-artifact@v3
+    - name: Upload files
+      uses: actions/upload-artifact@v3
       with:
+        name: executables
         path: dist/
 
   deploy_executable:
@@ -87,7 +85,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - uses: actions/download-artifact@v3
+    - name: Download files
+      uses: actions/download-artifact@v3
       with:
         path: dist/
 
@@ -109,5 +108,5 @@ jobs:
         prerelease: false
         title: ${{ env.WALLME_VERSION }}
         files: |
-          ./dist/wallme
-          ./dist/wallme.exe
+          ./dist/executables/wallme
+          ./dist/executables/wallme.exe
