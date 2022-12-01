@@ -60,7 +60,7 @@ jobs:
      
   deploy_executable:
     name: Deploy Executable
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
     needs: deploy_pypi
     strategy:
       matrix:
@@ -82,9 +82,9 @@ jobs:
 
     - name: Build
       run: |
-        echo from wallme.main import main >> wallme.py
-        echo main() >> wallme.py
-        pyinstaller --noconfirm --onefile --windowed "wallme.py"
+        chmod +x devscript/create_exe.sh
+        ./devscript/create_exe.sh
+      shell: bash
 
     - name: Publish
       uses: "marvinpinto/action-automatic-releases@latest"
