@@ -45,34 +45,23 @@ jobs:
 #      with:
 #        user: __token__
 #        password: ${{ secrets.PYPI_API_TOKEN }}
-
-    - name: Get version
-      run: |
-        chmod +x devscript/get_version.sh
-        export WALLME_VERSION=$(devscript/get_version.sh)
-        echo The new version is $WALLME_VERSION
-        echo "::set-env name=WALLME_VERSION::$WALLME_VERSION"
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-        
-    outputs:
-      wallme_version: ${{ env.WALLME_VERSION }}
      
   deploy_executable:
     name: Deploy Executable
     runs-on: ${{ matrix.os }}
-    needs: deploy_pypi
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+        - os: ubuntu-latest
+          executable_file: wallme
+        - os: windows-latest
+          executable_file: wallme.exe
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v4
-#      with:
-#        python-version: '3.10.1'
 
     - name: Install dependencies
       run: |
@@ -80,19 +69,35 @@ jobs:
         pip install pyinstaller
         pip install -r requirements.txt
 
+    - name: Get version
+      run: |
+        chmod +x devscript/get_version.sh
+        export WALLME_VERSION=$(devscript/get_version.sh)
+        echo The new version is $WALLME_VERSION
+        echo "::set-env name=WALLME_VERSION::$WALLME_VERSION"
+      shell: bash
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
     - name: Build
       run: |
         chmod +x devscript/create_exe.sh
         ./devscript/create_exe.sh
       shell: bash
 
-    - name: Publish
-      uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Publish      
+      uses: svenstaro/upload-release-action@v2
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: ${{ needs.deploy_pypi.outputs.wallme_version }}
-        prerelease: false
-        title: ${{ needs.deploy_pypi.outputs.wallme_version }}
-        files: |
-          ./dist/wallme.exe
-          ./dist/wallme
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./dist/${{ matrix.executable_file }}
+        asset_name: ${{ env.WALLME_VERSION }}
+        tag: ${{ env.WALLME_VERSION }}
+        overwrite: false
+        body: ""
+#      uses: "marvinpinto/action-automatic-releases@latest"
+#      with:
+#        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#        automatic_release_tag: ${{ env.WALLME_VERSION }}
+#        prerelease: false
+#        title: ${{ env.WALLME_VERSION }}
+#        files: ./dist/${{ matrix.executable_file }}
