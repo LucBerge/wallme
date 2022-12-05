@@ -18,6 +18,13 @@
 
 Wallme is a python tool to change your wallpaper every day based on websites. You can check WEBSITES.md for a full list ad supported websites (comming soon).
 
+## From GUI
+### Install
+[Download the latest release on github](https://github.com/LucBerge/wallme/releases).
+
+### Usage
+Double click the exe file to open the GUI.
+
 ## From CLI
 ### Install / Update
 
@@ -69,13 +76,6 @@ Prank your friends:
 ```
 wallme -prank
 ```
-
-## From CLI
-### Install
-[Download the latest release on github](https://github.com/LucBerge/wallme/releases).
-
-### Usage
-Double click the exe file to open the GUI.
 
 ## Contribute by adding a new website
 
