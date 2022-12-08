@@ -1,14 +1,13 @@
 # coding: utf8
 
 import os
-from pathlib import Path
 from .manager import Manager
 from ..exceptions import WallmeException
 
 
 class Linux(Manager):
 
-    DATA_FOLDER = str(Path.home()) + "/wallme"
+    DATA_FOLDER = os.path.expanduser(f'~' + os.environ.get('SUDO_USER', os.environ.get('USERNAME'))) + "/wallme"
     SERVICE_FILE = "/lib/systemd/system/wallme.service"
 
     def __init__(self, entry_point):
@@ -17,7 +16,7 @@ class Linux(Manager):
     def set(self, full_key, test=False):
         super().download(full_key, test)
         if (not test):
-            if os.system("/usr/bin/gsettings set org.gnome.desktop.background picture-uri " + self.image) != 0:
+            if os.system("sudo /usr/bin/gsettings set org.gnome.desktop.background picture-uri " + self.image) != 0:
                 raise WallmeException("Cannot set wallpaper")
 
     def set_startup(self, full_key):
