@@ -18,7 +18,7 @@ class MacOS(Manager):
         super().__init__(entry_point, self.DATA_FOLDER)
 
     def set(self, website, subkey, test=False):
-        super().download(website, subkey, test)
+        super().download(website, subkey, False, test=test)
         # if(not test):
         #     print("=====" + subprocess.Popen(self.SET_SCRIPT % self.IMAGE, shell=True) + "=======")
         #     if subprocess.Popen(self.SET_SCRIPT%self.IMAGE, shell=True) != 0:

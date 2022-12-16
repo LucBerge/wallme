@@ -10,7 +10,8 @@ from .. import utils
 
 class Manager():
 
-    IMAGE_NAME = "wallme.jpg"
+    BACKGROUND_IMAGE_NAME = "background.jpg"
+    GUI_IMAGE_NAME = "gui.jpg"
     PRANK_KEY = "reddit.sexywomanoftheday"
 
     def __init__(self, entry_point, data_folder):
@@ -19,10 +20,11 @@ class Manager():
         self.entry_point = entry_point
         if (not os.path.isdir(data_folder)):
             os.makedirs(data_folder, 493)
-        self.image = os.path.join(data_folder, self.IMAGE_NAME)
+        self.background_image = os.path.join(data_folder, self.BACKGROUND_IMAGE_NAME)
+        self.gui_image = os.path.join(data_folder, self.GUI_IMAGE_NAME)
         self.today = datetime.date.today()
 
-    def download(self, full_key, test=False):
+    def download(self, full_key, gui, test=False):
         # Parse full key
         website, subkey = utils.get_website_subkey_from_fullkey(full_key)
         # Pre process
@@ -32,11 +34,19 @@ class Manager():
         # Download image
         logger.debug("Downloading image from " + image_url, flush=True)
         img_data = requests.get(image_url, headers=website.HEADERS).content
-        with open(self.image, 'wb') as handler:
+        # Choose the image path
+        if(gui):
+            image_path = self.gui_image
+        else:
+            image_path = self.background_image
+        # Save the image file
+        with open(image_path, 'wb') as handler:
             handler.write(img_data)
-        logger.debug("Image saved to " + self.image)
+        logger.debug("Image saved to " + image_path)
         # Post process
-        website.post_process(self.image)
+        website.post_process(image_path)
+        #Return the image path
+        return image_path
 
     def info(self, full_key, test=False):
         # Parse full key

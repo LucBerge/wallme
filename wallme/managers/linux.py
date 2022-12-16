@@ -20,9 +20,9 @@ class Linux(Manager):
         super().__init__(entry_point, self.DATA_FOLDER)
 
     def set(self, full_key, test=False):
-        super().download(full_key, test)
+        image_path = super().download(full_key, False, test=test)
         if (not test):
-            if os.system("sudo /usr/bin/gsettings set org.gnome.desktop.background picture-uri " + self.image) != 0:
+            if os.system("sudo /usr/bin/gsettings set org.gnome.desktop.background picture-uri " + image_path) != 0:
                 raise WallmeException("Cannot set wallpaper")
 
     def set_startup(self, full_key):
