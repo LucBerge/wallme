@@ -27,40 +27,38 @@ def main():
         gui.resizable(False, False)
         gui.mainloop()
     else:
-        try:
-            if (args.list):
-                for key in WEBSITES.keys():
-                    logger.debug(key + " - " + WEBSITES[key].description)
+        if (args.list):
+            for key in WEBSITES.keys():
+                logger.debug(key + " - " + WEBSITES[key].description)
+        else:
+            manager_factory = ManagerFactory()
+            manager = manager_factory.get_manager()
+
+            if (args.unset_startup):
+                manager.unset_startup()
             else:
-                manager_factory = ManagerFactory()
-                manager = manager_factory.get_manager()
-
-                if (args.unset_startup):
-                    manager.unset_startup()
-                else:
-                    if (args.info):
-                        manager.info(args.info)
-                    if (args.url):
-                        manager.url(args.url)
-                    if (args.set):
-                        manager.set(args.set)
-                    if (args.set_startup or args.prank):
-                        if (args.prank):
-                            manager.prank()
-                        else:
-                            manager.set_startup(args.set_startup)
-
-        except PermissionError:
-            logger.error("You need admin permission to run this command")
-        except WallmeException as e:
-            logger.error(str(e))
-        except Exception:
-            traceback.print_exc()
-            logger.error("Please, report this issue : https://github.com/LucBerge/wallme/issues")
+                if (args.info):
+                    manager.info(args.info)
+                if (args.url):
+                    manager.url(args.url)
+                if (args.set):
+                    manager.set(args.set)
+                if (args.set_startup or args.prank):
+                    if (args.prank):
+                        manager.prank()
+                    else:
+                        manager.set_startup(args.set_startup)
 
 
 if __name__ == "__main__":
     try:
         main()
+    except PermissionError:
+        logger.error("You need admin permission to run this command")
+    except WallmeException as e:
+        logger.error(str(e))
+    except Exception:
+        traceback.print_exc()
+        logger.error("Please, report this issue : https://github.com/LucBerge/wallme/issues")
     except KeyboardInterrupt:
         None

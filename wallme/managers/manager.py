@@ -14,6 +14,8 @@ class Manager():
     PRANK_KEY = "reddit.sexywomanoftheday"
 
     def __init__(self, entry_point, data_folder):
+        if('.py' in entry_point):
+            entry_point = 'wallme'
         self.entry_point = entry_point
         if (not os.path.isdir(data_folder)):
             os.makedirs(data_folder, 493)

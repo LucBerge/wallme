@@ -29,11 +29,7 @@ class Windows(Manager):
         # Set startup
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
-            if ('.exe' in self.entry_point):
-                startup_entry_point = self.entry_point
-            else:
-                startup_entry_point = "wallme.exe"
-            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min " + startup_entry_point + " -set " + full_key)
+            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min " + self.entry_point + " -set " + full_key)
 
     def unset_startup(self):
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
