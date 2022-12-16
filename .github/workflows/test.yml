@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - '**/*.py'
+      - 'test/'
+      - 'wallme/'
     branches: [ dev ]
 
 jobs:
