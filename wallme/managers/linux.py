@@ -52,8 +52,10 @@ WantedBy=multi-user.target")
         # If file not exists
         if (not os.path.exists(self.SERVICE_FILE)):
             # Return None
-            return None
+            return None, None
         # Open file
         with open(self.SERVICE_FILE, "r") as f:
-            # Return full key
-            return f.readlines()[8].split(' ')[-1][:-1]
+            # Get line
+            values = f.readlines()[8].split(' ')
+            # Return entry point and full key
+            return " ".join(values[:-2])[10:], values[-1][:-1]

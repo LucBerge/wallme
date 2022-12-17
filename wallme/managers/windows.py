@@ -40,7 +40,9 @@ class Windows(Manager):
         try:
             reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_READ)
             with reg_key:
-                value = winreg.QueryValueEx(reg_key, self.REGISTRY_KEY)[0]
-                return value.split(' ')[-1]
+                # Get line
+                values = winreg.QueryValueEx(reg_key, self.REGISTRY_KEY)[0].split(' ')
+                # Return entry point and full key
+                return " ".join(values[4:-2]), values[-1]
         except FileNotFoundError:
-            return None
+            return None, None

@@ -173,7 +173,7 @@ class Gui(tk.Tk):
         self.unset_startup_button["state"] = tk.DISABLED
 
         # Get current startup value
-        fullkey = self.manager.get_startup()
+        _, fullkey = self.manager.get_startup()
         # If startup value exists
         if (fullkey is not None):
             # Get key and subkey
@@ -222,7 +222,7 @@ class Gui(tk.Tk):
         # If key is not None
         if (fullkey is not None):
             # Get current startup value
-            current_startup = self.manager.get_startup()
+            _, current_startup = self.manager.get_startup()
             # If selected item is the startup value
             if ((current_startup is not None) and ((current_startup in fullkey) or (fullkey in current_startup))):
                 # Disable set startup button

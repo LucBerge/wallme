@@ -35,18 +35,19 @@ class TestWebsite:
         manager = ManagerFactory().get_manager()
 
         # Get previous value
-        previous_value = manager.get_startup()
+        previous_entry_point, previous_value = manager.get_startup()
 
         # Check the value as been set
         manager.set_startup(full_key)
-        value = manager.get_startup()
+        _, value = manager.get_startup()
         assert value == full_key
 
         # Check the value as been unset
         manager.unset_startup()
-        value = manager.get_startup()
+        _, value = manager.get_startup()
         assert value is None
 
         # Restore previous value
         if (previous_value is not None):
+            manager.entry_point = previous_entry_point
             manager.set_startup(previous_value)
