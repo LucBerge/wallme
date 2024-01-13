@@ -6,7 +6,6 @@ from .bing import Bing
 from .epod import Epod
 from .nasa import Nasa
 from .national_geographic import NationalGeographic
-from .outdoor_photographer import OutdoorPhotographer
 from .reddit import Reddit
 from .tetras import Tetras
 from .the_guardian import TheGuardian
@@ -21,7 +20,6 @@ WEBSITES[Bing.key] = Bing()
 WEBSITES[Epod.key] = Epod()
 WEBSITES[Nasa.key] = Nasa()
 WEBSITES[NationalGeographic.key] = NationalGeographic()
-WEBSITES[OutdoorPhotographer.key] = OutdoorPhotographer()
 WEBSITES[Reddit.key] = Reddit()
 WEBSITES[Tetras.key] = Tetras()
 WEBSITES[TheGuardian.key] = TheGuardian()
