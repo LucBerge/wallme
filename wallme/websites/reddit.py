@@ -7,7 +7,7 @@ from ..exceptions import WallmeException
 class Reddit(Website):
     key = 'reddit'
     description = 'Top pictures from the topic of your choice. Use \"reddit.<subreddit>\" as the key. (e.g.: reddit.earthporn)'
-    base_url = 'http://www.reddit.com/r/'
+    base_url = 'https://www.reddit.com/r/'
 
     def pre_process(self, subkey):
         if (subkey is None):
