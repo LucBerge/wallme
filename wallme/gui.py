@@ -93,7 +93,7 @@ class Gui(tk.Tk):
             0,
             960,
             540,
-            self.manager.image)
+            "")
 
         # LIST LABEL
         canvas.create_text(
@@ -173,7 +173,7 @@ class Gui(tk.Tk):
         self.unset_startup_button["state"] = tk.DISABLED
 
         # Get current startup value
-        fullkey = self.manager.get_startup()
+        _, fullkey = self.manager.get_startup()
         # If startup value exists
         if (fullkey is not None):
             # Get key and subkey
@@ -191,9 +191,9 @@ class Gui(tk.Tk):
     def update_image(self, key):
         try:
             # Download image
-            self.manager.download(key)
+            image_path = self.manager.download(key, True)
             # Set image
-            new_image = Image.open(self.manager.image)
+            new_image = Image.open(image_path)
             new_image = new_image.resize((960, 540))
             photo_image = ImageTk.PhotoImage(new_image)
             self.image.configure(image=photo_image)
@@ -222,7 +222,7 @@ class Gui(tk.Tk):
         # If key is not None
         if (fullkey is not None):
             # Get current startup value
-            current_startup = self.manager.get_startup()
+            _, current_startup = self.manager.get_startup()
             # If selected item is the startup value
             if ((current_startup is not None) and ((current_startup in fullkey) or (fullkey in current_startup))):
                 # Disable set startup button
@@ -241,11 +241,8 @@ class Gui(tk.Tk):
             self.info_button["state"] = tk.NORMAL
 
             # Set image
-            if (event is None):
-                self.update_image(fullkey)
-            else:
-                thread = threading.Thread(target=self.update_image, args=(fullkey,))
-                thread.start()
+            thread = threading.Thread(target=self.update_image, args=(fullkey,))
+            thread.start()
 
     def entry_has_changed(self, entry):
         # Clear listbox selection

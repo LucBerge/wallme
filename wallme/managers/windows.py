@@ -17,9 +17,9 @@ class Windows(Manager):
         super().__init__(entry_point, self.DATA_FOLDER)
 
     def set(self, full_key, test=False):
-        super().download(full_key, test)
+        image_path = super().download(full_key, False, test=test)
         if (not test):
-            if ctypes.windll.user32.SystemParametersInfoW(20, 0, self.image, 3) != 1:
+            if ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3) != 1:
                 error = ctypes.GetLastError()
                 raise WallmeException("Cannot set wallpaper: " + str(error))
 
@@ -29,11 +29,7 @@ class Windows(Manager):
         # Set startup
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
         with reg_key:
-            if ('.exe' in self.entry_point):
-                startup_entry_point = self.entry_point
-            else:
-                startup_entry_point = "wallme.exe"
-            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min " + startup_entry_point + " -set " + full_key)
+            winreg.SetValueEx(reg_key, self.REGISTRY_KEY, 0, winreg.REG_SZ, "cmd /c start /min " + self.entry_point + " -set " + full_key)
 
     def unset_startup(self):
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_SET_VALUE)
@@ -44,7 +40,9 @@ class Windows(Manager):
         try:
             reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Microsoft\Windows\CurrentVersion\Run', 0, winreg.KEY_READ)
             with reg_key:
-                value = winreg.QueryValueEx(reg_key, self.REGISTRY_KEY)[0]
-                return value.split(' ')[-1]
+                # Get line
+                values = winreg.QueryValueEx(reg_key, self.REGISTRY_KEY)[0].split(' ')
+                # Return entry point and full key
+                return " ".join(values[4:-2]), values[-1]
         except FileNotFoundError:
-            return None
+            return None, None

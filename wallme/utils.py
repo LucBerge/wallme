@@ -6,6 +6,10 @@ from .websites import WEBSITES
 from .exceptions import WallmeException
 
 
+def is_admin():
+    return os.getuid()==0
+
+
 def get_key_subkey_from_fullkey(full_key):
     dot_index = full_key.find('.')
     if (dot_index > 0):

@@ -1,8 +1,8 @@
 
 [![Version](https://img.shields.io/pypi/v/wallme?label=Version)](https://github.com/LucBerge/wallme/releases)
 [![Downloads](https://img.shields.io/github/downloads/lucberge/wallme/total?label=Downloads)](https://github.com/LucBerge/wallme/releases)
-[![Test](https://img.shields.io/github/workflow/status/LucBerge/wallme/Test/dev?label=Test)](https://github.com/LucBerge/wallme/actions/workflows/test.yml)
-[![Deploy](https://img.shields.io/github/workflow/status/LucBerge/wallme/CD?branch=master&label=Deploy)](https://github.com/LucBerge/wallme/actions/workflows/cd.yml)
+[![Test](https://img.shields.io/github/actions/workflow/status/LucBerge/wallme/test.yml?branch=dev&label=Test)](https://github.com/LucBerge/wallme/actions/workflows/test.yml)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/LucBerge/wallme/cd.yml?branch=master&label=Deploy)](https://github.com/LucBerge/wallme/actions/workflows/cd.yml)
 [![Codecov](https://codecov.io/gh/LucBerge/wallme/branch/dev/graph/badge.svg?token=AH8jbVSPj3)](https://codecov.io/gh/LucBerge/wallme)
 
 <p align="center">
@@ -17,6 +17,13 @@
 ## Description
 
 Wallme is a python tool to change your wallpaper every day based on websites. You can check WEBSITES.md for a full list ad supported websites (comming soon).
+
+## From GUI
+### Install
+[Download the latest release on github](https://github.com/LucBerge/wallme/releases).
+
+### Usage
+Double click the exe file to open the GUI.
 
 ## From CLI
 ### Install / Update
@@ -69,13 +76,6 @@ Prank your friends:
 ```
 wallme -prank
 ```
-
-## From CLI
-### Install
-[Download the latest release on github](https://github.com/LucBerge/wallme/releases).
-
-### Usage
-Double click the exe file to open the GUI.
 
 ## Contribute by adding a new website
 

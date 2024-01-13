@@ -3,6 +3,8 @@ name: CD
 on:
   workflow_dispatch:
   push:
+    paths:
+      - '**/*.py'
     branches: [ master ]
 
 jobs:
